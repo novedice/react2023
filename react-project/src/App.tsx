@@ -1,31 +1,25 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
 import React from 'react';
+import Main from './pages/main-page/MainPage';
+import Header from './components/header/Header';
+import AboutPage from './pages/about-page/AboutPage';
 
-function App() {
-  const [count, setCount] = useState(0);
+class App extends React.Component {
+  render(): React.ReactNode {
+    return (
+      <div className="app-wrap">
+        <Header />
 
-  return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/404" />
+          <Route path="*" element={<Navigate to="/404" />} />
+        </Routes>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
-    </div>
-  );
+    );
+  }
 }
 
 export default App;

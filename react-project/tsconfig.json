@@ -19,7 +19,7 @@
     "noEmit": true,
     "jsx": "react"
   },
-  "include": ["./src/**/*", "styled.d.ts"],
+  "include": ["./src/**/*", "styled.d.ts", ".eslintrc.cjs"],
 
   "references": [{ "path": "./tsconfig.node.json" }]
 }

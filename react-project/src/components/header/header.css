@@ -1,0 +1,6 @@
+.header-wrap {
+  display: flex;
+  width: 100%;
+  min-height: 40px;
+  justify-content: space-around;
+}

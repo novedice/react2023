@@ -1,0 +1,39 @@
+.search-bar-wrap {
+  width: 80%;
+  height: 50px;
+  padding: 0.5% 1% 0.5%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: 99990px;
+  border: solid 2px rgb(83, 81, 79);
+}
+
+.img-search {
+  max-width: 20px;
+  height: fit-content;
+  margin-right: 3%;
+}
+
+.search-bar {
+  width: 90%;
+  height: inherit;
+  border: none;
+  appearance: none;
+  outline: none;
+}
+
+.cards-wrap {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.single-card-wrap {
+  max-width: 250px;
+  border: solid 1px gray;
+  border-radius: 10px;
+  padding: 1%;
+  margin: 1%;
+}

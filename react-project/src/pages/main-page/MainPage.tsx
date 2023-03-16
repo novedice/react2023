@@ -7,8 +7,7 @@ import cards from '../../components/single-card/constants';
 class Main extends React.Component {
   searchValue: string;
 
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  constructor(props: {} | Readonly<{}>) {
+  constructor(props: object | Readonly<object>) {
     super(props);
     this.searchHandle = this.searchHandle.bind(this);
     this.searchValue = '' || (localStorage.getItem('search') as string);

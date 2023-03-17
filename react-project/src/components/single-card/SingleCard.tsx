@@ -22,11 +22,13 @@ export class SingleCard extends React.Component<CardType> {
   render() {
     return (
       <>
-        <img className="card-image" src={this.img}></img>
-        <div className="card-name">{this.name}</div>
-        <div className="card-population">{this.population}</div>
-        <div className="card-area">{this.area}</div>
-        <div className="card-district">{this.district}</div>
+        <div className="card-image-wrap">
+          <img className="card-image" src={this.img}></img>
+        </div>
+        <div className="card-name capitalize">{`City: ${this.name}`}</div>
+        <div className="card-population">{`Population: ${this.population}`}</div>
+        <div className="card-area">{`Area: ${this.area} sq.km`}</div>
+        <div className="card-district capitalize">{`District: ${this.district}`}</div>
         <div className="card-description">{this.description}</div>
       </>
     );

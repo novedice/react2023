@@ -3,4 +3,23 @@
   padding: 0;
   display: flex;
   flex-direction: column;
+  /* font-family: 'Source Sans Pro Semibold', Arial, sans-serif; */
+  font-family: 'Optimistic Text', ui-sans-serif, system-ui, 'BlinkMacSystemFont', 'Segoe UI',
+    'Roboto', Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  font-size: 1em;
+  min-height: 100vh;
+}
+
+.unlink {
+  text-decoration: none;
+  color: rgb(235 236 240);
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.upper-text {
+  text-transform: uppercase;
 }

@@ -32,8 +32,8 @@ const cards: CardType[] = [
     name: 'aveiro',
     img: 'aveiro.jpeg',
     description:
-      'Aveiro is a city and a municipality in Portugal. In 2021, the population was 80,880,[1] in an area of 197.58 square kilometres (76.29 sq mi):[2] it is the second most populous city in the Centro Region of Portugal (after Coimbra).',
-    district: 'lisbon',
+      'Aveiro is a city and a municipality in Portugal. It is the second most populous city in the Centro Region of Portugal (after Coimbra).',
+    district: 'aveiro',
     population: 80880,
     area: 197.58,
   },
@@ -43,7 +43,7 @@ const cards: CardType[] = [
     description:
       'Braga is a city and a municipality, capital of the northwestern Portuguese district of Braga and of the historical and cultural Minho Province.',
     district: 'braga',
-    population: 19333,
+    population: 193333,
     area: 183.4,
   },
   {

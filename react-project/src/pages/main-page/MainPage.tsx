@@ -1,5 +1,6 @@
 import React from 'react';
 import { SingleCard } from '../../components/single-card/SingleCard';
+import SearchLogo from './searchLogo';
 import './main-page.css';
 import './assets/search-img.png';
 import cards from '../../components/single-card/constants';
@@ -15,21 +16,23 @@ class Main extends React.Component {
 
   componentDidMount(): void {
     if (localStorage.getItem('search')) {
-      console.log(localStorage.getItem('search'));
       this.searchValue = localStorage.getItem('search') as string;
     }
   }
 
+  componentWillUnmount(): void {
+    localStorage.setItem('search', this.searchValue);
+  }
+
   searchHandle = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.searchValue = event.target.value;
-    localStorage.setItem('search', this.searchValue);
   };
 
   render() {
     return (
       <>
         <div className="search-bar-wrap">
-          <img className="img-search" src="search-img.png" />
+          <SearchLogo />
           <input
             className="search-bar"
             type="text"

@@ -2,13 +2,26 @@ type CardType = {
   name: string;
   img: string;
   district: string;
-  area: number;
-  population: number;
+  area: string;
+  population: string;
   description: string;
+  date?: Date;
+  fileImg?: HTMLInputElement;
 };
 
 type MainProps = {
   searchValue: string;
 };
 
-export type { CardType, MainProps };
+type ActiveState = {
+  activeMain: string;
+  activeAbout: string;
+  activeForm: string;
+};
+
+type LayoutProps = {
+  state: ActiveState;
+  setState: React.Dispatch<React.SetStateAction<ActiveState>>;
+};
+
+export type { CardType, MainProps, ActiveState, LayoutProps };

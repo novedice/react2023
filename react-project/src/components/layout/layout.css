@@ -9,7 +9,7 @@
 }
 
 .active {
-  color: orange;
+  color: orange !important;
 }
 
 .footer-wrap {

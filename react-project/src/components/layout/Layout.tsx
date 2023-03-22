@@ -1,36 +1,29 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
+import { ActiveState, LayoutProps } from '../../types';
 import './layout.css';
 
-type ActiveState = {
-  activeMain: string;
-  activeAbout: string;
-};
-
-type LayoutProps = {
-  state: ActiveState;
-  setState: React.Dispatch<React.SetStateAction<ActiveState>>;
-};
-
 class Layout extends React.Component<LayoutProps> {
-  state: {
-    activeMain: string;
-    activeAbout: string;
-  };
+  state: ActiveState;
 
   constructor(props: LayoutProps) {
     super(props);
     this.state = props.state;
     this.activeMainHandle = this.activeMainHandle.bind(this);
     this.activeAboutHandle = this.activeAboutHandle.bind(this);
+    this.activeFormHandle = this.activeFormHandle.bind(this);
   }
 
   activeMainHandle() {
-    this.setState({ activeMain: 'active', activeAbout: '' });
+    this.setState({ activeMain: 'active', activeAbout: '', activeForm: '' });
   }
 
   activeAboutHandle() {
-    this.setState({ activeMain: '', activeAbout: 'active' });
+    this.setState({ activeMain: '', activeAbout: 'active', activeForm: '' });
+  }
+
+  activeFormHandle() {
+    this.setState({ activeMain: '', activeAbout: '', activeForm: 'active' });
   }
 
   componentDidMount(): void {}
@@ -52,6 +45,13 @@ class Layout extends React.Component<LayoutProps> {
             onClick={this.activeAboutHandle}
           >
             about us
+          </Link>
+          <Link
+            to="/form"
+            className={`unlink ${this.state.activeForm}`}
+            onClick={this.activeFormHandle}
+          >
+            form
           </Link>
           {/* <div>{location}</div> */}
         </header>

@@ -6,8 +6,8 @@ export class SingleCard extends React.Component<CardType> {
   name: string;
   img: string;
   description: string;
-  population: number;
-  area: number;
+  population: string;
+  area: string;
   district: string;
 
   constructor(props: CardType) {

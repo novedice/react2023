@@ -1,9 +1,9 @@
 import React from 'react';
 import { SingleCard } from '../../components/single-card/SingleCard';
-import SearchLogo from './searchLogo';
-import './main-page.css';
-import './assets/search-img.png';
 import cards from '../../components/single-card/constants';
+import SearchLogo from './searchLogo';
+import './assets/search-img.png';
+import './main-page.css';
 
 class Main extends React.Component {
   searchValue: string;

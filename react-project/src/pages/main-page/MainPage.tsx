@@ -42,7 +42,6 @@ class Main extends React.Component {
         </div>
         <div className="cards-wrap">
           {cards.map((oneCard, id) => (
-            // <div className="single-card-wrap" key={id}>
             <SingleCard
               key={id}
               name={oneCard.name}
@@ -52,7 +51,6 @@ class Main extends React.Component {
               district={oneCard.district}
               area={oneCard.area}
             />
-            // </div>
           ))}
         </div>
       </>

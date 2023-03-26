@@ -7,6 +7,9 @@ type CardType = {
   description: string;
   date?: Date;
   fileImg?: HTMLInputElement;
+  beenThere?: boolean;
+  wantAName?: boolean;
+  namePerson?: string;
 };
 
 type MainProps = {
@@ -24,4 +27,16 @@ type LayoutProps = {
   setState: React.Dispatch<React.SetStateAction<ActiveState>>;
 };
 
-export type { CardType, MainProps, ActiveState, LayoutProps };
+type FormErrors = {
+  cityError: string;
+  imgError: string;
+  districtError: string;
+  areaError: string;
+  populationError: string;
+  descriptionError: string;
+  dateError: string;
+  fileImgError: string;
+  beenThereError: string;
+};
+
+export type { CardType, MainProps, ActiveState, LayoutProps, FormErrors };

@@ -8,7 +8,6 @@ describe('App', () => {
   const placeholder = localStorage.getItem('search') || '';
   it('renders app', () => {
     render(<App />);
-    screen.debug();
     const input = screen.getByRole('textbox');
     expect(screen.getByText(/main/i)).toBeInTheDocument();
     expect(screen.getByText(/about us/i)).toBeInTheDocument();
@@ -18,6 +17,5 @@ describe('App', () => {
     fireEvent.change(input, {
       target: { value: 'lisbon' },
     });
-    screen.debug();
   });
 });

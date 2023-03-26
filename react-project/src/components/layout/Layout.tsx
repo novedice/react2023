@@ -53,7 +53,6 @@ class Layout extends React.Component<LayoutProps> {
           >
             form
           </Link>
-          {/* <div>{location}</div> */}
         </header>
         <Outlet />
         <footer className="footer-wrap">2023</footer>

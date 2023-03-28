@@ -17,7 +17,6 @@ describe('Single card', () => {
         description={cards[0].description}
       />
     );
-    screen.debug();
     expect(screen.getByText(/district/i)).toBeInTheDocument();
   });
 });

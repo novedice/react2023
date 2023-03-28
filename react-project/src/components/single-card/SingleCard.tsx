@@ -6,8 +6,8 @@ export class SingleCard extends React.Component<CardType> {
   name: string;
   img: string;
   description: string;
-  population: number;
-  area: number;
+  population: string;
+  area: string;
   district: string;
 
   constructor(props: CardType) {
@@ -22,14 +22,16 @@ export class SingleCard extends React.Component<CardType> {
   render() {
     return (
       <>
-        <div className="card-image-wrap">
-          <img className="card-image" src={this.img}></img>
+        <div className="single-card-wrap">
+          <div className="card-image-wrap">
+            <img className="card-image" src={this.img}></img>
+          </div>
+          <div className="card-name capitalize">{`City: ${this.name}`}</div>
+          <div className="card-population">{`Population: ${this.population}`}</div>
+          <div className="card-area">{`Area: ${this.area} sq.km`}</div>
+          <div className="card-district capitalize">{`District: ${this.district}`}</div>
+          <div className="card-description">{this.description}</div>
         </div>
-        <div className="card-name capitalize">{`City: ${this.name}`}</div>
-        <div className="card-population">{`Population: ${this.population}`}</div>
-        <div className="card-area">{`Area: ${this.area} sq.km`}</div>
-        <div className="card-district capitalize">{`District: ${this.district}`}</div>
-        <div className="card-description">{this.description}</div>
       </>
     );
   }

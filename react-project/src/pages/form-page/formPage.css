@@ -1,0 +1,148 @@
+.form-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.form {
+  height: inherit;
+  width: 50%;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  max-width: 32rem;
+  width: 40vw;
+  border-radius: 10px;
+}
+
+.form-name {
+  font-size: larger;
+}
+
+.form-label {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.check {
+  display: flex;
+  flex-direction: row !important;
+  align-items: center;
+  justify-content: center;
+}
+
+.radio {
+  display: flex;
+  flex-direction: row !important;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkbox {
+  width: 10% !important;
+}
+
+.form-input-text {
+  width: 100%;
+  height: 30px;
+  padding: 1% 3% 0.5%;
+  line-height: 1.25;
+  font-size: 1.1em;
+  margin-bottom: 0.5rem;
+  background-color: rgba(120, 131, 155, 0);
+  color: rgb(153 161 179);
+  font-size: 1;
+  display: flex;
+  border-radius: 99990px;
+  background-color: rgba(120, 131, 155, 0.2);
+  align-items: center;
+  justify-content: center;
+}
+
+input[type='date' i] {
+  align-items: center;
+  display: inline-flex;
+  font-family: inherit;
+  padding-inline-start: 3%;
+  cursor: default;
+  overflow: hidden;
+  padding: 0.5% 3% 0.5%;
+  background-color: rgba(120, 131, 155, 0.2);
+  color: rgb(153 161 179);
+  border-radius: 99990px;
+}
+
+.form-errors {
+  margin: 0;
+  padding: 0;
+  color: rgb(232, 222, 222);
+  font-style: italic;
+  font-size: 1rem;
+  line-height: 1rem;
+  margin-bottom: 0.75rem;
+  align-self: flex-start;
+}
+
+.submit-button {
+  width: 50%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+}
+
+.card-in-form {
+  max-width: 255px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 0 solid #e5e7eb;
+  border-radius: 1rem;
+  padding: 1%;
+  margin: 1%;
+  background-color: rgb(52 58 70);
+}
+
+.cards-in-form {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.submitted {
+  top: 200px;
+  left: 10%;
+  width: 80%;
+  height: 200px;
+  background-color: gray;
+  border-radius: 10px;
+  position: absolute;
+  color: rgb(134, 207, 186);
+  font-size: larger;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.select > option {
+  font-size: large !important;
+}
+select > option {
+  font-size: 35px;
+  font-family: 'Open Sans', sans-serif;
+  color: red;
+  background-color: rgb(247, 247, 247);
+  background-image: none;
+  font-size: 18px;
+  height: 50px;
+  padding: 15px;
+  border: 1px solid rgb(41, 18, 18);
+}

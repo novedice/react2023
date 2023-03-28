@@ -1,0 +1,35 @@
+.card-image-wrap {
+  display: flex;
+  height: 180px;
+  width: 100%;
+  margin-bottom: 2%;
+}
+
+.card-image {
+  width: 100%;
+  height: auto;
+  align-self: center;
+  margin-bottom: 2%;
+  border-radius: 5px;
+}
+
+.card-name {
+  font-size: large;
+  margin-bottom: 3%;
+}
+
+.card-population {
+  margin-bottom: 3%;
+}
+
+.card-area {
+  margin-bottom: 3%;
+}
+
+.card-district {
+  margin-bottom: 3%;
+}
+
+.card-description {
+  margin-bottom: 3%;
+}

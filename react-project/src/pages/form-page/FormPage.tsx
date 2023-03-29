@@ -2,10 +2,8 @@ import { SingleCard } from '../../components/single-card/SingleCard';
 import React, { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { CardType } from '../../types';
-// import isValidCity from './functions/isValidCity';
-// import isValidNumber from './functions/isValidNumber';
-// import isLength from './functions/isLength';
-// import isEmpty from './functions/isEmpty';
+import isValidCity from './functions/isValidCity';
+import isValidNumber from './functions/isValidNumber';
 import './formPage.css';
 
 type FormValues = {
@@ -26,27 +24,31 @@ const FormPage = () => {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<FormValues>();
   const [cards, setCards] = useState<CardType[]>([]);
   const [submitted, setSubmitted] = useState(false);
-  let allErrors = 0;
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    allErrors = 0;
-    console.log('data:', data);
-    // allErrors = isValidCity(data.name, allErrors).error;
-    // allErrors = isValidNumber(data.population, allErrors).error;
-    console.log('all err', allErrors);
-    if (allErrors === 0) {
-      setCards([...cards, data]);
-      setSubmitted(true);
-    }
+    console.log(data);
+    setCards([...cards, data]);
+    setSubmitted(true);
+    setValue('name', '');
+    setValue('area', '');
+    setValue('population', '');
+    setValue('description', '');
+    setValue('district', 'lisbon');
+    setValue('date', '');
+    setValue('beenThere', '');
+    setValue('wantAName', false);
+    setValue('namePerson', '');
   };
 
   const handleOk = (event: { preventDefault: () => void }) => {
     event.preventDefault();
     setSubmitted(false);
+    // setValue('fileImg', '');
   };
 
   return (
@@ -68,38 +70,63 @@ const FormPage = () => {
               <input
                 className="form-input-text"
                 type="text"
-                {...register('name', { required: true })}
+                {...register('name', {
+                  required: 'This field is requered. ',
+                  minLength: {
+                    value: 2,
+                    message: 'The city length should be not less than 2 symbols. ', // JS only: <p>error message</p> TS only support string
+                  },
+                  validate: {
+                    city: (name) => !isValidCity(name) || 'City should start from Upper letter. ',
+                  },
+                })}
               ></input>
             </label>
-            {errors.name && <div className="form-errors">Name error</div>}
+            {errors.name && <div className="form-errors">{errors.name.message}</div>}
             <label className="form-label">
               Area of the city
               <input
                 className="form-input-text"
                 type="text"
                 name="area"
-                {...register('area', { required: true, minLength: 3 })}
+                {...register('area', {
+                  required: 'This field is requered. ',
+                  validate: {
+                    number: (n) => isValidNumber(n) || 'It should be a number',
+                  },
+                })}
               ></input>
             </label>
-            {errors.area && <div className="form-errors">This field is required</div>}
+            {errors.area && <div className="form-errors">{errors.area.message}</div>}
             <label className="form-label">
               Population of the city
               <input
                 className="form-input-text"
                 type="text"
-                {...register('population', { required: true })}
+                {...register('population', {
+                  required: 'This field is requered. ',
+                  validate: {
+                    number: (n) => isValidNumber(n) || 'It should be a number',
+                  },
+                })}
               ></input>
             </label>
-            {errors.population && <div className="form-errors">This field is required</div>}
+            {errors.population && <div className="form-errors">{errors.population.message}</div>}
             <label className="form-label">
               Description of the city
               <input
                 className="form-input-text"
                 type="text"
-                {...register('description', { required: true, minLength: 5 })}
+                {...register('description', {
+                  required: 'This field is requered. ',
+                  minLength: {
+                    value: 5,
+                    message: 'The length of this field should be not less than 2 symbols. ',
+                  },
+                })}
               ></input>
             </label>
-            {errors.description && <div className="form-errors">This field is required</div>}
+            {errors.description && <div className="form-errors">{errors.description.message}</div>}
             <label className="form-label">
               Date of foundation
               <input
@@ -151,7 +178,7 @@ const FormPage = () => {
                 {...register('beenThere', { required: true })}
               ></input>
             </label>
-            {errors.choose && <div className="form-errors">Choose Error</div>}
+            {errors.beenThere && <div className="form-errors">This field is required</div>}
             <label className="form-label">
               Add photo of the city
               <input
@@ -160,7 +187,7 @@ const FormPage = () => {
                 {...register('fileImg', { required: true })}
               ></input>
             </label>
-            {errors.file && <div className="form-errors">File error</div>}
+            {errors.fileImg && <div className="form-errors">This field is required</div>}
             <label className="form-label check">
               <input
                 className="form-input-text checkbox"
@@ -189,7 +216,7 @@ const FormPage = () => {
                     <SingleCard
                       name={oneCard.name}
                       img={`${URL.createObjectURL(
-                        oneCard.fileImg[0] as unknown as Blob | MediaSource
+                        oneCard.fileImg ? (oneCard.fileImg[0] as unknown as Blob | MediaSource) : ''
                       )}`}
                       district={oneCard.district}
                       area={oneCard.area}

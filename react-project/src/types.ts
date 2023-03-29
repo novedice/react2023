@@ -7,7 +7,7 @@ type CardType = {
   description: string;
   date?: Date;
   fileImg?: HTMLInputElement;
-  beenThere?: boolean;
+  beenThere?: string;
   wantAName?: boolean;
   namePerson?: string;
 };

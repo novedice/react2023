@@ -7,53 +7,53 @@ import isLength from './functions/isLength';
 import isEmpty from './functions/isEmpty';
 import './formPage.css';
 
-class FormPage extends React.Component {
-  state: { cards: CardType[]; errors: FormErrors; submitted: boolean };
-  cityInput: RefObject<HTMLInputElement>;
-  fileInput: RefObject<HTMLInputElement>;
-  dateInput: RefObject<HTMLInputElement>;
-  districtInput: RefObject<HTMLSelectElement>;
-  areaInput: RefObject<HTMLInputElement>;
-  populationInput: RefObject<HTMLInputElement>;
-  descriptionInput: RefObject<HTMLInputElement>;
-  beenThereInput: RefObject<HTMLInputElement>;
-  wantANameInput: RefObject<HTMLInputElement>;
-  nameInput: RefObject<HTMLInputElement>;
-  file: unknown;
+const FormPage = () => {
+  // state: { cards: CardType[]; errors: FormErrors; submitted: boolean };
+  // cityInput: RefObject<HTMLInputElement>;
+  // fileInput: RefObject<HTMLInputElement>;
+  // dateInput: RefObject<HTMLInputElement>;
+  // districtInput: RefObject<HTMLSelectElement>;
+  // areaInput: RefObject<HTMLInputElement>;
+  // populationInput: RefObject<HTMLInputElement>;
+  // descriptionInput: RefObject<HTMLInputElement>;
+  // beenThereInput: RefObject<HTMLInputElement>;
+  // wantANameInput: RefObject<HTMLInputElement>;
+  // nameInput: RefObject<HTMLInputElement>;
+  // file: unknown;
 
-  constructor(props: CardType) {
-    super(props);
-    this.state = {
-      cards: [],
-      errors: {
-        cityError: '',
-        areaError: '',
-        dateError: '',
-        districtError: '',
-        populationError: '',
-        fileImgError: '',
-        imgError: '',
-        descriptionError: '',
-        beenThereError: '',
-      },
-      submitted: false,
-    };
-    this.cityInput = React.createRef();
-    this.fileInput = React.createRef();
-    this.dateInput = React.createRef();
-    this.districtInput = React.createRef();
-    this.areaInput = React.createRef();
-    this.populationInput = React.createRef();
-    this.descriptionInput = React.createRef();
-    this.beenThereInput = React.createRef();
-    this.wantANameInput = React.createRef();
-    this.nameInput = React.createRef();
+  // constructor(props: CardType) {
+  //   super(props);
+  //   this.state = {
+  //     cards: [],
+  //     errors: {
+  //       cityError: '',
+  //       areaError: '',
+  //       dateError: '',
+  //       districtError: '',
+  //       populationError: '',
+  //       fileImgError: '',
+  //       imgError: '',
+  //       descriptionError: '',
+  //       beenThereError: '',
+  //     },
+  //     submitted: false,
+  //   };
+  //   this.cityInput = React.createRef();
+  //   this.fileInput = React.createRef();
+  //   this.dateInput = React.createRef();
+  //   this.districtInput = React.createRef();
+  //   this.areaInput = React.createRef();
+  //   this.populationInput = React.createRef();
+  //   this.descriptionInput = React.createRef();
+  //   this.beenThereInput = React.createRef();
+  //   this.wantANameInput = React.createRef();
+  //   this.nameInput = React.createRef();
 
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleOk = this.handleOk.bind(this);
-  }
+  //   this.handleSubmit = this.handleSubmit.bind(this);
+  //   this.handleOk = this.handleOk.bind(this);
+  // }
 
-  handleSubmit(event: { preventDefault: () => void }) {
+  const handleSubmit = (event: { preventDefault: () => void }) => {
     event.preventDefault();
 
     let errors = 0;
@@ -148,164 +148,162 @@ class FormPage extends React.Component {
     } else return;
 
     return;
-  }
+  };
 
-  handleOk(event: { preventDefault: () => void }) {
+  const handleOk = (event: { preventDefault: () => void }) => {
     event.preventDefault();
     this.setState({ submitted: false });
-  }
+  };
 
-  render() {
-    return (
-      <>
-        <div className="form-page-wrap">
-          {this.state.submitted && (
-            <div className="submitted">
-              <p>Your form is submitted. The card successfully added!</p>
-              <button className="submit-button" onClick={this.handleOk}>
-                OK
-              </button>
+  return (
+    <>
+      <div className="form-page-wrap">
+        {this.state.submitted && (
+          <div className="submitted">
+            <p>Your form is submitted. The card successfully added!</p>
+            <button className="submit-button" onClick={this.handleOk}>
+              OK
+            </button>
+          </div>
+        )}
+        <div className="form-wrap">
+          <form className="form">
+            <p className="form-name">Please enter below data of the city:</p>
+            <label className="form-label">
+              City Name
+              <input className="form-input-text" type="text" ref={this.cityInput}></input>
+            </label>
+            {this.state.errors.cityError && (
+              <div className="form-errors">{this.state.errors.cityError}</div>
+            )}
+            <label className="form-label">
+              Area of the city
+              <input className="form-input-text" type="text" ref={this.areaInput}></input>
+            </label>
+            {this.state.errors.areaError && (
+              <div className="form-errors">{this.state.errors.areaError}</div>
+            )}
+            <label className="form-label">
+              Population of the city
+              <input className="form-input-text" type="text" ref={this.populationInput}></input>
+            </label>
+            {this.state.errors.populationError && (
+              <div className="form-errors">{this.state.errors.populationError}</div>
+            )}
+            <label className="form-label">
+              Description of the city
+              <input className="form-input-text" type="text" ref={this.descriptionInput}></input>
+            </label>
+            {this.state.errors.descriptionError && (
+              <div className="form-errors">{this.state.errors.descriptionError}</div>
+            )}
+            <label className="form-label">
+              Date of foundation
+              <input
+                className="form-input-text"
+                type="date"
+                name="date"
+                ref={this.dateInput}
+              ></input>
+            </label>
+            {this.state.errors.dateError && (
+              <div className="form-errors">{this.state.errors.dateError}</div>
+            )}
+            <label className="form-label">
+              Choose the district
+              <select className="form-input-text select" ref={this.districtInput}>
+                <option value="lisbon">lisbon</option>
+                <option value="azores">azores</option>
+                <option value="aveiro">aveiro</option>
+                <option value="beja">beja</option>
+                <option value="braganca">braganca</option>
+                <option value="coimbra">coimbra</option>
+                <option value="evora">evora</option>
+                <option value="faro">faro</option>
+                <option value="leiria">leiria</option>
+                <option value="madeira">madeira</option>
+                <option value="porto">porto</option>
+                <option value="setubal">setubal</option>
+                <option value="viana do castelo">viana do castelo</option>
+                <option value="vila real">vila real</option>
+                <option value="viseu">viseu</option>
+                <option value="portalegre">portalegre</option>
+                <option value="castelo branco">braga</option>
+              </select>
+            </label>
+            <p>Have you already visited this city?</p>
+            <label className="form-label radio">
+              Yes
+              <input type="radio" name="choose" value="yes" ref={this.beenThereInput}></input>
+            </label>
+            <label className="form-label radio">
+              No
+              <input type="radio" name="choose" value="no" ref={this.beenThereInput}></input>
+            </label>
+            <label className="form-label">
+              Add photo of the city
+              <input className="form-input-text" type="file" ref={this.fileInput}></input>
+            </label>
+            {this.state.errors.fileImgError && (
+              <div className="form-errors">{this.state.errors.fileImgError}</div>
+            )}
+            <label className="form-label check">
+              <input
+                className="form-input-text checkbox"
+                type="checkbox"
+                ref={this.wantANameInput}
+              ></input>
+              I want to add my name to the card
+            </label>
+            <label className="form-label">
+              Enter your name
+              <input className="form-input-text" type="text" ref={this.nameInput}></input>
+            </label>
+            <input
+              className="submit-button"
+              type="submit"
+              value="submit"
+              onClick={this.handleSubmit}
+            ></input>
+          </form>
+        </div>
+        <div className="your-cards-wrap">
+          <h2 className="">Your own cards:</h2>
+          {this.state.cards.length !== 0 && (
+            <div className="cards-in-form">
+              {this.state.cards.map((oneCard, index) => (
+                <React.Fragment key={index}>
+                  <div className="card-in-form">
+                    {oneCard.wantAName && <p>{`Card by ${oneCard.namePerson}`}</p>}
+                    {!oneCard.beenThere && <p>Already visited!</p>}
+                    {oneCard.beenThere && <p>Not yet visited</p>}
+                    <SingleCard
+                      name={oneCard.name}
+                      img={`${URL.createObjectURL(
+                        oneCard.fileImg as unknown as Blob | MediaSource
+                      )}`}
+                      district={oneCard.district}
+                      area={oneCard.area}
+                      population={oneCard.population}
+                      description={oneCard.description}
+                      namePerson={oneCard.namePerson}
+                    />
+                    <p>{`Date of foundation: ${oneCard.date}`}</p>
+                  </div>
+                </React.Fragment>
+              ))}
             </div>
           )}
-          <div className="form-wrap">
-            <form className="form">
-              <p className="form-name">Please enter below data of the city:</p>
-              <label className="form-label">
-                City Name
-                <input className="form-input-text" type="text" ref={this.cityInput}></input>
-              </label>
-              {this.state.errors.cityError && (
-                <div className="form-errors">{this.state.errors.cityError}</div>
-              )}
-              <label className="form-label">
-                Area of the city
-                <input className="form-input-text" type="text" ref={this.areaInput}></input>
-              </label>
-              {this.state.errors.areaError && (
-                <div className="form-errors">{this.state.errors.areaError}</div>
-              )}
-              <label className="form-label">
-                Population of the city
-                <input className="form-input-text" type="text" ref={this.populationInput}></input>
-              </label>
-              {this.state.errors.populationError && (
-                <div className="form-errors">{this.state.errors.populationError}</div>
-              )}
-              <label className="form-label">
-                Description of the city
-                <input className="form-input-text" type="text" ref={this.descriptionInput}></input>
-              </label>
-              {this.state.errors.descriptionError && (
-                <div className="form-errors">{this.state.errors.descriptionError}</div>
-              )}
-              <label className="form-label">
-                Date of foundation
-                <input
-                  className="form-input-text"
-                  type="date"
-                  name="date"
-                  ref={this.dateInput}
-                ></input>
-              </label>
-              {this.state.errors.dateError && (
-                <div className="form-errors">{this.state.errors.dateError}</div>
-              )}
-              <label className="form-label">
-                Choose the district
-                <select className="form-input-text select" ref={this.districtInput}>
-                  <option value="lisbon">lisbon</option>
-                  <option value="azores">azores</option>
-                  <option value="aveiro">aveiro</option>
-                  <option value="beja">beja</option>
-                  <option value="braganca">braganca</option>
-                  <option value="coimbra">coimbra</option>
-                  <option value="evora">evora</option>
-                  <option value="faro">faro</option>
-                  <option value="leiria">leiria</option>
-                  <option value="madeira">madeira</option>
-                  <option value="porto">porto</option>
-                  <option value="setubal">setubal</option>
-                  <option value="viana do castelo">viana do castelo</option>
-                  <option value="vila real">vila real</option>
-                  <option value="viseu">viseu</option>
-                  <option value="portalegre">portalegre</option>
-                  <option value="castelo branco">braga</option>
-                </select>
-              </label>
-              <p>Have you already visited this city?</p>
-              <label className="form-label radio">
-                Yes
-                <input type="radio" name="choose" value="yes" ref={this.beenThereInput}></input>
-              </label>
-              <label className="form-label radio">
-                No
-                <input type="radio" name="choose" value="no" ref={this.beenThereInput}></input>
-              </label>
-              <label className="form-label">
-                Add photo of the city
-                <input className="form-input-text" type="file" ref={this.fileInput}></input>
-              </label>
-              {this.state.errors.fileImgError && (
-                <div className="form-errors">{this.state.errors.fileImgError}</div>
-              )}
-              <label className="form-label check">
-                <input
-                  className="form-input-text checkbox"
-                  type="checkbox"
-                  ref={this.wantANameInput}
-                ></input>
-                I want to add my name to the card
-              </label>
-              <label className="form-label">
-                Enter your name
-                <input className="form-input-text" type="text" ref={this.nameInput}></input>
-              </label>
-              <input
-                className="submit-button"
-                type="submit"
-                value="submit"
-                onClick={this.handleSubmit}
-              ></input>
-            </form>
-          </div>
-          <div className="your-cards-wrap">
-            <h2 className="">Your own cards:</h2>
-            {this.state.cards.length !== 0 && (
-              <div className="cards-in-form">
-                {this.state.cards.map((oneCard, index) => (
-                  <React.Fragment key={index}>
-                    <div className="card-in-form">
-                      {oneCard.wantAName && <p>{`Card by ${oneCard.namePerson}`}</p>}
-                      {!oneCard.beenThere && <p>Already visited!</p>}
-                      {oneCard.beenThere && <p>Not yet visited</p>}
-                      <SingleCard
-                        name={oneCard.name}
-                        img={`${URL.createObjectURL(
-                          oneCard.fileImg as unknown as Blob | MediaSource
-                        )}`}
-                        district={oneCard.district}
-                        area={oneCard.area}
-                        population={oneCard.population}
-                        description={oneCard.description}
-                        namePerson={oneCard.namePerson}
-                      />
-                      <p>{`Date of foundation: ${oneCard.date}`}</p>
-                    </div>
-                  </React.Fragment>
-                ))}
-              </div>
-            )}
-            {this.state.cards.length === 0 && (
-              <h3>
-                You did not add your cards yet. If you want to add your card on this page, fill the
-                form and press submit button.
-              </h3>
-            )}
-          </div>
+          {this.state.cards.length === 0 && (
+            <h3>
+              You did not add your cards yet. If you want to add your card on this page, fill the
+              form and press submit button.
+            </h3>
+          )}
         </div>
-      </>
-    );
-  }
-}
+      </div>
+    </>
+  );
+};
 
 export default FormPage;

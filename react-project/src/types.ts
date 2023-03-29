@@ -17,9 +17,9 @@ type MainProps = {
 };
 
 type ActiveState = {
-  activeMain: string;
-  activeAbout: string;
-  activeForm: string;
+  main: string;
+  about: string;
+  form: string;
 };
 
 type LayoutProps = {

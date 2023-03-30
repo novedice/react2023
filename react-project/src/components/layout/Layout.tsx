@@ -4,16 +4,6 @@ import { LayoutProps } from '../../types';
 import './layout.css';
 
 const Layout = ({ state, setState }: LayoutProps) => {
-  // state: ActiveState;
-
-  // constructor(props: LayoutProps) {
-  //   super(props);
-  //   this.state = props.state;
-  //   this.activeMainHandle = this.activeMainHandle.bind(this);
-  //   this.activeAboutHandle = this.activeAboutHandle.bind(this);
-  //   this.activeFormHandle = this.activeFormHandle.bind(this);
-  // }
-
   const activeMainHandle = () => {
     setState({ main: 'active', about: '', form: '' });
   };

@@ -9,9 +9,6 @@ import { ActiveState } from './types';
 import './App.css';
 
 const App = () => {
-  // const [activeMain, setActiveMain] = useState('active');
-  // const [activeAbout, setActiveAbout] = useState('');
-  // const [activeForm, setActiveForm] = useState('');
   const [active, setActive] = useState<ActiveState>({ main: 'active', about: '', form: '' });
 
   return (

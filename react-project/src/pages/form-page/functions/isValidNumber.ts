@@ -2,11 +2,11 @@ import { numbers } from './consts';
 
 const isNumber = (str: string) => {
   for (const char of str) {
-    if (!numbers.includes(char) || char !== ' ') {
-      return true;
+    if (!numbers.includes(char)) {
+      return false;
     }
   }
-  return false;
+  return true;
 };
 
 export default isNumber;

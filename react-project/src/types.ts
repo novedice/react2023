@@ -1,3 +1,5 @@
+import { UseFormRegister } from 'react-hook-form';
+
 type CardType = {
   name: string;
   img: string;
@@ -40,7 +42,7 @@ type FormErrors = {
 };
 
 type InputTextProps = {
-  register: UseFormRegister<IFormValues>;
+  register: UseFormRegister<FormValues>;
   label: string;
   validationFunc: (n: string) => boolean;
   errorMessage?: string;
@@ -48,7 +50,7 @@ type InputTextProps = {
 };
 
 type SelectFieldProps = {
-  register: UseFormRegister<IFormValues>;
+  register: UseFormRegister<FormValues>;
 };
 
 type FormValues = {

@@ -10,6 +10,8 @@ import RadioInput from './components/fields/RadioInput';
 import Checkbox from './components/fields/Checkbox';
 import InputDate from './components/fields/InputDate';
 import FileInput from './components/fields/FileInput';
+import InputName from './components/fields/InputName';
+
 import isValidNumber from './functions/isValidNumber';
 import './formPage.css';
 
@@ -48,9 +50,20 @@ const FormPage = () => {
         <div className="form-wrap">
           <form className="form" onSubmit={handleSubmit(onSubmit)}>
             <p className="form-name">Please enter below data of the city:</p>
-            <InputText register={register} label={'name'} validationFunc={isValidCity} />
+            <InputText
+              register={register}
+              label={'name'}
+              validationFunc={isValidCity}
+              minLength={2}
+              errorMessage={'This field should start from upper letter'}
+            />
             {errors.name && <div className="form-errors">{errors.name.message}</div>}
-            <InputText register={register} label={'area'} validationFunc={isValidNumber} />
+            <InputText
+              register={register}
+              label={'area'}
+              validationFunc={isValidNumber}
+              errorMessage={'It should be a number'}
+            />
             {errors.area && <div className="form-errors">{errors.area.message}</div>}
             <InputText
               register={register}
@@ -67,17 +80,14 @@ const FormPage = () => {
             />
             {errors.description && <div className="form-errors">{errors.description.message}</div>}
             <InputDate register={register} />
-            {errors.date && <div className="form-errors">This field is required</div>}
+            {errors.date && <div className="form-errors">{errors.date.message}</div>}
             <SelectField register={register} />
             <RadioInput register={register} />
-            {errors.beenThere && <div className="form-errors">This field is required</div>}
+            {errors.beenThere && <div className="form-errors">{errors.beenThere.message}</div>}
             <FileInput register={register} />
-            {errors.fileImg && <div className="form-errors">This field is required</div>}
+            {errors.fileImg && <div className="form-errors">{errors.fileImg.message}</div>}
             <Checkbox register={register} />
-            <label className="form-label">
-              Enter your name
-              <input className="form-input-text" type="text" {...register('namePerson')}></input>
-            </label>
+            <InputName register={register} />
             <input className="submit-button" type="submit" value="submit"></input>
           </form>
         </div>

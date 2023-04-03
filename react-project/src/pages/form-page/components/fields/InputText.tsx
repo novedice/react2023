@@ -1,4 +1,6 @@
-import InputTextProps from '../../../types';
+import React from 'react';
+import { InputTextProps } from '../../../../types';
+import { fieldRequired } from '../../const';
 
 const InputText = ({
   register,
@@ -14,11 +16,10 @@ const InputText = ({
         <input
           className="form-input-text"
           type="text"
-          name={label}
           {...register(label, {
-            required: 'This field is requered. ',
+            required: fieldRequired,
             validate: {
-              number: (n) => validationFunc(n) || errorMessage,
+              number: (n: string) => validationFunc(n) || errorMessage,
             },
             minLength: {
               value: minLength,

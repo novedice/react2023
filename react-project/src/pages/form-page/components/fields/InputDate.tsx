@@ -1,4 +1,6 @@
-import { SelectFieldProps } from '../../../types';
+import React from 'react';
+import { SelectFieldProps } from '../../../../types';
+import { fieldRequired } from '../../const';
 
 const InputDate = ({ register }: SelectFieldProps) => {
   return (
@@ -8,8 +10,8 @@ const InputDate = ({ register }: SelectFieldProps) => {
         <input
           className="form-input-text"
           type="date"
-          name="date"
-          {...register('date', { required: true })}
+          // name="date"
+          {...register('date', { required: fieldRequired })}
         ></input>
       </label>
     </>

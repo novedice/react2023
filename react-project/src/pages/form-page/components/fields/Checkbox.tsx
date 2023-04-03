@@ -1,4 +1,5 @@
-import { SelectFieldProps } from '../../../types';
+import React from 'react';
+import { SelectFieldProps } from '../../../../types';
 
 const Checkbox = ({ register }: SelectFieldProps) => {
   return (

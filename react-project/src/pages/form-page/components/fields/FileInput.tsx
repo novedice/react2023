@@ -1,4 +1,6 @@
-import { SelectFieldProps } from '../../../types';
+import React from 'react';
+import { SelectFieldProps } from '../../../../types';
+import { fieldRequired } from '../../const';
 
 const FileInput = ({ register }: SelectFieldProps) => {
   return (
@@ -8,7 +10,7 @@ const FileInput = ({ register }: SelectFieldProps) => {
         <input
           className="form-input-text"
           type="file"
-          {...register('fileImg', { required: true })}
+          {...register('fileImg', { required: fieldRequired })}
         ></input>
       </label>
     </>

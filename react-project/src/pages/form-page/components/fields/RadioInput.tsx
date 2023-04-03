@@ -1,4 +1,6 @@
-import { SelectFieldProps } from '../../../types';
+import React from 'react';
+import { SelectFieldProps } from '../../../../types';
+import { fieldRequired } from '../../const';
 
 const RadioInput = ({ register }: SelectFieldProps) => {
   return (
@@ -10,7 +12,7 @@ const RadioInput = ({ register }: SelectFieldProps) => {
           type="radio"
           name="beenThere"
           value="yes"
-          {...register('beenThere', { required: true })}
+          {...register('beenThere', { required: fieldRequired })}
         ></input>
       </label>
       <label className="form-label radio">
@@ -19,7 +21,7 @@ const RadioInput = ({ register }: SelectFieldProps) => {
           type="radio"
           name="beenThere"
           value="no"
-          {...register('beenThere', { required: true })}
+          {...register('beenThere', { required: fieldRequired })}
         ></input>
       </label>
     </>

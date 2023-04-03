@@ -3,22 +3,6 @@ import { CardType } from '../../types';
 import './singleCard.css';
 
 export const SingleCard = (card: CardType) => {
-  // name: string;
-  // img: string;
-  // description: string;
-  // population: string;
-  // area: string;
-  // district: string;
-
-  // constructor(props: CardType) {
-  //   super(props);
-  //   this.name = props.name;
-  //   this.img = props.img;
-  //   this.description = props.description;
-  //   this.population = props.population;
-  //   this.area = props.area;
-  //   this.district = props.district;
-  // }
   return (
     <>
       <div className="single-card-wrap">

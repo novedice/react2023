@@ -10,7 +10,6 @@ const InputDate = ({ register }: SelectFieldProps) => {
         <input
           className="form-input-text"
           type="date"
-          // name="date"
           {...register('date', { required: fieldRequired })}
         ></input>
       </label>

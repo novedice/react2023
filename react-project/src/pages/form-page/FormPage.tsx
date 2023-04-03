@@ -11,7 +11,6 @@ import Checkbox from './components/fields/Checkbox';
 import InputDate from './components/fields/InputDate';
 import FileInput from './components/fields/FileInput';
 import InputName from './components/fields/InputName';
-
 import isValidNumber from './functions/isValidNumber';
 import './formPage.css';
 

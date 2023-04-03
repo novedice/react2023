@@ -1,4 +1,5 @@
 import { UseFormRegister } from 'react-hook-form';
+import React from 'react';
 
 type CardType = {
   name: string;

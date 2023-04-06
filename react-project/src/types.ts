@@ -68,6 +68,28 @@ type FormValues = {
   namePerson?: string;
 };
 
+interface IData {
+  photos: {
+    page: number;
+    pages: number;
+    perpage: number;
+    photo: IPhoto[];
+    total: number;
+  };
+}
+
+interface IPhoto {
+  farm: number;
+  id: string;
+  isfamily: 0 | 1;
+  isfriend: 0 | 1;
+  ispublic: 1 | 0;
+  owner: string;
+  secret: string;
+  server: string;
+  title: string;
+}
+
 export type {
   CardType,
   MainProps,
@@ -77,4 +99,6 @@ export type {
   InputTextProps,
   SelectFieldProps,
   FormValues,
+  IData,
+  IPhoto,
 };

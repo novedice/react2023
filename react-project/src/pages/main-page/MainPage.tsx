@@ -5,6 +5,7 @@ import SearchLogo from './searchLogo';
 import './assets/search-img.png';
 import './main-page.css';
 import { getPhotos } from '../../api-requests/photo-requests';
+import { IPhoto } from 'types';
 // import { IPhoto } from '../../types';
 
 const Main = () => {
@@ -19,7 +20,7 @@ const Main = () => {
       // setRespCards(resp.photos.photo);
       setUrlPhotos(
         resp.photos.photo.map(
-          (onephoto) =>
+          (onephoto: IPhoto) =>
             `https://live.staticflickr.com/${onephoto.server}/${onephoto.id}_${onephoto.secret}_w.jpg`
         )
       );

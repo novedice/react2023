@@ -1,12 +1,12 @@
 import { numbers } from './consts';
 
-const isNumber = (str: string, err: number) => {
+const isNumber = (str: string) => {
   for (const char of str) {
-    if (!numbers.includes(char) || char !== ' ') {
-      return { error: err, message: 'please enter the number' };
+    if (!numbers.includes(char)) {
+      return false;
     }
   }
-  return { error: err, message: '' };
+  return true;
 };
 
 export default isNumber;

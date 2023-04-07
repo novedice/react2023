@@ -15,6 +15,18 @@ type CardType = {
   namePerson?: string;
 };
 
+interface ICardShort {
+  img: string;
+  title: string;
+}
+
+interface ICardFull extends ICardShort {
+  owner: string;
+  description: string;
+  location: string;
+  datePublished: string;
+}
+
 type MainProps = {
   searchValue: string;
 };
@@ -43,7 +55,7 @@ type FormErrors = {
 };
 
 type InputTextProps = {
-  register: UseFormRegister<FormValues>;
+  register: UseFormRegister<CardType>;
   label: string;
   validationFunc: (n: string) => boolean;
   errorMessage?: string;
@@ -51,21 +63,7 @@ type InputTextProps = {
 };
 
 type SelectFieldProps = {
-  register: UseFormRegister<FormValues>;
-};
-
-type FormValues = {
-  name: string;
-  img: string;
-  district: string;
-  area: string;
-  population: string;
-  description: string;
-  date?: Date;
-  fileImg?: HTMLInputElement;
-  beenThere?: boolean;
-  wantAName?: boolean;
-  namePerson?: string;
+  register: UseFormRegister<CardType>;
 };
 
 interface IData {
@@ -139,8 +137,9 @@ export type {
   FormErrors,
   InputTextProps,
   SelectFieldProps,
-  FormValues,
   IData,
   IPhoto,
   IPhotoInfo,
+  ICardFull,
+  ICardShort,
 };

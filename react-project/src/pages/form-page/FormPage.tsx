@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { SingleCard } from '../../components/single-card/SingleCard';
 import Submitted from './components/Submitted';
-import { CardType, FormValues } from '../../types';
+import { CardType } from '../../types';
 import isValidCity from './functions/isValidCity';
 import InputText from './components/fields/InputText';
 import SelectField from './components/fields/SelectField';
@@ -20,11 +20,11 @@ const FormPage = () => {
     handleSubmit,
     setValue,
     formState: { errors },
-  } = useForm<FormValues>();
+  } = useForm<CardType>();
   const [cards, setCards] = useState<CardType[]>([]);
   const [submitted, setSubmitted] = useState(false);
 
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
+  const onSubmit: SubmitHandler<CardType> = (data) => {
     setCards([
       ...cards,
       { ...data, fileImg: `${URL.createObjectURL(data.fileImg ? data.fileImg[0] : '')}` },

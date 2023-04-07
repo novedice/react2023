@@ -5,25 +5,31 @@ import SearchLogo from './searchLogo';
 import './assets/search-img.png';
 import './main-page.css';
 import { getPhotos } from '../../api-requests/photo-requests';
-import { IPhoto } from 'types';
+import { ICardShort } from 'types';
+import { Sizes } from '../../enums';
+import createUrl from './createUrlFunc';
 // import { IPhoto } from '../../types';
 
 const Main = () => {
   const [searchValue, setSearchValue] = useState('');
-  // const [setRespCards] = useState<IPhoto[]>();
-  const [urlPhotos, setUrlPhotos] = useState<string[]>([]);
+  const [respCards, setRespCards] = useState<ICardShort[]>([]);
 
   const recieveResp = async () => {
     const resp = await getPhotos('portugal');
     if (resp) {
       console.log(resp.photos.photo);
-      // setRespCards(resp.photos.photo);
-      setUrlPhotos(
-        resp.photos.photo.map(
-          (onephoto: IPhoto) =>
-            `https://live.staticflickr.com/${onephoto.server}/${onephoto.id}_${onephoto.secret}_w.jpg`
-        )
+      setRespCards(
+        resp.photos.photo.map((onePhoto) => {
+          return { img: createUrl(onePhoto, Sizes.SMALL), title: onePhoto.title };
+        })
       );
+    }
+  };
+
+  const photoHandle = async () => {
+    const resp = await getPhotoInfo();
+    if (resp) {
+      console.log(resp.photos.photo);
     }
   };
 
@@ -67,8 +73,16 @@ const Main = () => {
         ))}
       </div>
       <div>
-        {urlPhotos.map((oneUrl, index) => (
-          <img src={oneUrl} key={index}></img>
+        {respCards.map((oneUrl, index) => (
+          <React.Fragment key={index}>
+            <p>{oneUrl.title}</p>
+            <img
+              src={oneUrl.img}
+              onClick={() => {
+                photoHandle(oneUrl.id);
+              }}
+            ></img>
+          </React.Fragment>
         ))}
       </div>
     </>

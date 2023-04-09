@@ -22,7 +22,7 @@ interface ICardShort {
 }
 
 interface ICardFull extends ICardShort {
-  owner: string;
+  owner?: Owner;
   description: string;
   location: string;
   datePublished: string;

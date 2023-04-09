@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { SingleCard } from '../../components/single-card/SingleCard';
-import cards from '../../components/single-card/constants';
+// import { SingleCard } from '../../components/single-card/SingleCard';
+// import cards from '../../components/single-card/constants';
 import SearchLogo from './searchLogo';
 import './assets/search-img.png';
 import './main-page.css';
-import { getPhotos, getPhotoInfo } from '../../api-requests/photo-requests';
+import { getPhotos } from '../../api-requests/photo-requests';
 import { ICardShort } from 'types';
 import { Sizes } from '../../enums';
 import createUrl from './createUrlFunc';
@@ -30,14 +30,9 @@ const Main = () => {
       );
     }
   };
-
   const photoHandle = async (id: string) => {
     openWindow();
     setId(id);
-    const resp = await getPhotoInfo(id);
-    if (resp) {
-      console.log(resp.photo.description._content);
-    }
   };
 
   useEffect(() => {
@@ -68,12 +63,13 @@ const Main = () => {
           <input
             className="search-bar"
             type="text"
-            onChange={searchHandle}
+            // onChange={searchHandle}
             defaultValue={searchValue}
+            onSubmit={searchHandle}
           ></input>
         </div>
         <div className="cards-wrap">
-          {cards.map((oneCard, id) => (
+          {/* {cards.map((oneCard, id) => (
             <SingleCard
               key={id}
               name={oneCard.name}
@@ -83,7 +79,7 @@ const Main = () => {
               district={oneCard.district}
               area={oneCard.area}
             />
-          ))}
+          ))} */}
         </div>
         <div>
           {respCards.map((oneUrl, index) => (

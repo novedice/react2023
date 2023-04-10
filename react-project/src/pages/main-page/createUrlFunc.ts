@@ -1,9 +1,8 @@
 import { Sizes } from '../../enums';
-import { IPhoto } from '../../types';
 import { PHOTOURL } from './const';
 
-const createUrl = (photo: IPhoto, size: Sizes) => {
-  return `${PHOTOURL}/${photo.server}/${photo.id}_${photo.secret}_${size}.jpg`;
+const createUrl = (server: string, id: string, secret: string, size: Sizes) => {
+  return `${PHOTOURL}/${server}/${id}_${secret}_${size}.jpg`;
 };
 
 export default createUrl;

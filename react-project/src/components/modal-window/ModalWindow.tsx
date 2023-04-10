@@ -6,7 +6,13 @@ const ModalWindow = ({ children, closeWindow }: ModalWindowProps) => {
   return (
     <>
       <div className="mask-window" onClick={closeWindow} />
-      <div className="modal-window">{children}</div>
+
+      <div className="modal-window">
+        <div className="close" onClick={closeWindow}>
+          x
+        </div>
+        {children}
+      </div>
     </>
   );
 };

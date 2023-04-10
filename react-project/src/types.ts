@@ -99,36 +99,34 @@ interface IPhoto extends PhotoFields {
 }
 
 interface IPhotoInfo extends PhotoFields {
-  photo: {
-    dateuploaded: string;
-    owner: Owner;
-    title: {
-      _content: string;
-    };
-    description: {
-      _content: string;
-    };
-    location: {
-      latitude: string;
-      longitude: string;
-      accuracy: string;
-      context: string;
-      locality: { _content: string };
-      county: { _content: string };
-      region: { _content: string };
-      country: { _content: string };
-      neighbourhood: { _content: string };
-    };
-    urls: {
-      url: [{ type: string; _content: string }];
-    };
-    dates: {
-      posted: string;
-      taken: string;
-      takengranularity: number;
-      takenunknown: string;
-      lastupdate: string;
-    };
+  dateuploaded: string;
+  owner: Owner;
+  title: {
+    _content: string;
+  };
+  description: {
+    _content: string;
+  };
+  location: {
+    latitude: string;
+    longitude: string;
+    accuracy: string;
+    context: string;
+    locality: { _content: string };
+    county: { _content: string };
+    region: { _content: string };
+    country: { _content: string };
+    neighbourhood: { _content: string };
+  };
+  urls: {
+    url: [{ type: string; _content: string }];
+  };
+  dates: {
+    posted: string;
+    taken: string;
+    takengranularity: number;
+    takenunknown: string;
+    lastupdate: string;
   };
 }
 

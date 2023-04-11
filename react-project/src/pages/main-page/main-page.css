@@ -38,6 +38,7 @@
 
 .single-card-wrap-main {
   width: 300px;
+  max-height: 400px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

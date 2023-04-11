@@ -15,7 +15,7 @@ const Main = () => {
   const [searchValue, setSearchValue] = useState('');
   const [respCards, setRespCards] = useState<ICardShort[]>([]);
   const [idCurrent, setIdCurrent] = useState('');
-  const [searchParam, setSearchParam] = useState('portugal');
+  const [searchParam, setSearchParam] = useState('');
   const { response, loading, error } = usePhotos(searchParam);
 
   const photoHandle = async (id: string) => {
@@ -26,6 +26,7 @@ const Main = () => {
   useEffect(() => {
     if (localStorage.getItem('search')) {
       setSearchValue(localStorage.getItem('search') as string);
+      setSearchParam(localStorage.getItem('search') as string);
     }
     if (response) {
       setRespCards(
@@ -49,7 +50,6 @@ const Main = () => {
     event.preventDefault();
     setSearchParam(searchValue);
     localStorage.setItem('search', searchValue);
-    console.log(searchParam);
   };
 
   return (
@@ -74,19 +74,23 @@ const Main = () => {
         <div className="cards-wrap">
           {loading && <p>LOADING...</p>}
 
-          {respCards.map((oneUrl, index) => (
-            <div
-              className="single-card-wrap-main"
-              key={index}
-              onClick={() => {
-                photoHandle(oneUrl.id);
-                openWindow();
-              }}
-            >
-              <p>{oneUrl.title}</p>
-              <img src={oneUrl.img}></img>
-            </div>
-          ))}
+          {!loading && (
+            <>
+              {respCards.map((oneUrl, index) => (
+                <div
+                  className="single-card-wrap-main"
+                  key={index}
+                  onClick={() => {
+                    photoHandle(oneUrl.id);
+                    openWindow();
+                  }}
+                >
+                  <p>{oneUrl.title}</p>
+                  <img src={oneUrl.img}></img>
+                </div>
+              ))}
+            </>
+          )}
           {error && <p>{error}</p>}
         </div>
       </div>

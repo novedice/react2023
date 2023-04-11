@@ -21,7 +21,6 @@ export const SingleCard = ({ card }: SingleCardProps) => {
         <div className="card-name capitalize">{`Title: ${card.title._content}`}</div>
         <div className="card-population">{`Author: ${card.owner?.username}`}</div>
         <div className="card-area">{`Description: ${card.description._content}`}</div>
-        {/* <div className="card-district capitalize">{`Location: ${card.photo.location.region._content}`}</div> */}
         <div className="card-description">{`Date: ${card.dates.taken}`}</div>
       </div>
     </>

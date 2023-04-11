@@ -26,9 +26,6 @@ const usePhotos = (searchVal: string) => {
   const getPhotos = async (searchVal: string) => {
     try {
       setLoading(true);
-      console.log(
-        `${BASEURL}/${SERVICES}/${REST}/?${METHODSEARCH}&${API_KEY}&${FORMAT}&${NO_JSON_CB}&text=${searchVal}&${PER_PAGE}10`
-      );
       if (searchVal) {
         const response = await axios.get<IData>(
           `${BASEURL}/${SERVICES}/${REST}/?${METHODSEARCH}&${API_KEY}&${FORMAT}&${NO_JSON_CB}&text=${searchVal}&${PER_PAGE}10`
@@ -38,7 +35,6 @@ const usePhotos = (searchVal: string) => {
         const response = await axios.get<IData>(
           `${BASEURL}/${SERVICES}/${REST}/?${METHODGETRECENT}&${API_KEY}&${FORMAT}&${NO_JSON_CB}&${PER_PAGE}12`
         );
-
         setResponse(response.data);
       }
       setLoading(false);

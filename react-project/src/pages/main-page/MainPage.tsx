@@ -86,7 +86,7 @@ const Main = () => {
                   }}
                 >
                   <p>{oneUrl.title}</p>
-                  <img src={oneUrl.img}></img>
+                  <img className="img-main" src={oneUrl.img}></img>
                 </div>
               ))}
             </>

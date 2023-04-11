@@ -9,6 +9,7 @@ import { ModalWindowContext } from '../../context/ModalWindowContext';
 import ModalWindow from '../../components/modal-window/ModalWindow';
 import PhotoCard from '../../components/photo-card/photoCard';
 import { usePhotos } from '../../hooks/usePhotos';
+import SmallCard from '../../components/small-card/SmallCard';
 
 const Main = () => {
   const { window, openWindow, closeWindow } = useContext(ModalWindowContext);
@@ -42,10 +43,7 @@ const Main = () => {
   }, [response, searchParam]);
 
   useEffect(() => {
-    const changeSearchParams = () => {
-      localStorage.setItem('search', searchValue);
-    };
-    changeSearchParams();
+    localStorage.setItem('search', searchValue);
   }, [searchValue]);
 
   const searchHandle = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -84,16 +82,7 @@ const Main = () => {
           {!loading && respCards.length !== 0 && (
             <>
               {respCards.map((oneUrl, index) => (
-                <div
-                  className="single-card-wrap-main"
-                  key={index}
-                  onClick={() => {
-                    photoHandle(oneUrl.id);
-                  }}
-                >
-                  <p>{oneUrl.title}</p>
-                  <img className="img-main" src={oneUrl.img}></img>
-                </div>
+                <SmallCard key={index} oneUrl={oneUrl} photoHandle={photoHandle} />
               ))}
             </>
           )}

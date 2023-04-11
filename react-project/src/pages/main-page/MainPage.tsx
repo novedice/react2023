@@ -41,6 +41,13 @@ const Main = () => {
     }
   }, [response, searchParam]);
 
+  useEffect(() => {
+    const changeSearchParams = () => {
+      localStorage.setItem('search', searchValue);
+    };
+    changeSearchParams();
+  }, [searchValue]);
+
   const searchHandle = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
     setSearchValue(event.target.value);
@@ -61,7 +68,7 @@ const Main = () => {
       )}
       <div>
         <div className="search-bar-wrap">
-          <SearchLogo />
+          <SearchLogo handleClick={submitHandle} />
           <form className="search-form" onSubmit={submitHandle}>
             <input
               className="search-bar"
@@ -74,7 +81,7 @@ const Main = () => {
         <div className="cards-wrap">
           {loading && <p>LOADING...</p>}
 
-          {!loading && (
+          {!loading && respCards.length !== 0 && (
             <>
               {respCards.map((oneUrl, index) => (
                 <div
@@ -82,7 +89,6 @@ const Main = () => {
                   key={index}
                   onClick={() => {
                     photoHandle(oneUrl.id);
-                    openWindow();
                   }}
                 >
                   <p>{oneUrl.title}</p>
@@ -90,6 +96,9 @@ const Main = () => {
                 </div>
               ))}
             </>
+          )}
+          {!loading && respCards.length === 0 && (
+            <div>{`Nothing found with ${searchParam}...`}</div>
           )}
           {error && <p>{error}</p>}
         </div>

@@ -9,6 +9,7 @@ interface SingleCardProps {
 }
 
 export const SingleCard = ({ card }: SingleCardProps) => {
+  console.log(card);
   return (
     <>
       <div className="single-card-wrap">

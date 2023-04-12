@@ -1,15 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react';
-import SearchLogo from './searchLogo';
-import './assets/search-img.png';
-import './main-page.css';
-import { ICardShort } from 'types';
-import { Sizes } from '../../enums';
+import { usePhotos } from '../../hooks/usePhotos';
 import createUrl from './createUrlFunc';
 import { ModalWindowContext } from '../../context/ModalWindowContext';
 import ModalWindow from '../../components/modal-window/ModalWindow';
 import PhotoCard from '../../components/photo-card/photoCard';
-import { usePhotos } from '../../hooks/usePhotos';
 import SmallCard from '../../components/small-card/SmallCard';
+import { ICardShort } from 'types';
+import { Sizes } from '../../enums';
+import './main-page.css';
+import './assets/search-img.png';
+import SearchLogo from './searchLogo';
 
 const Main = () => {
   const { window, openWindow, closeWindow } = useContext(ModalWindowContext);

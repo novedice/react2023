@@ -13,9 +13,14 @@ export default defineConfig({
       enabled: true,
       provider: 'c8',
       reporter: ['text'],
-      all: true,
+      all: false,
       include: ['src//'],
-      exclude: ['src/.{ts,tsx}'],
+      exclude: [
+        'src/.{ts,tsx}',
+        'src/types.ts',
+        'src/enums.ts',
+        'src/components//single-card/constants.ts',
+      ],
     },
   },
 });

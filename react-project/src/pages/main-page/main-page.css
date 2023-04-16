@@ -25,6 +25,10 @@
   margin-left: 1%;
 }
 
+.search-form {
+  width: 100%;
+}
+
 .cards-wrap {
   width: 100%;
   display: flex;
@@ -32,8 +36,9 @@
   justify-content: space-around;
 }
 
-.single-card-wrap {
-  max-width: 250px;
+.single-card-wrap-main {
+  width: 300px;
+  max-height: 400px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -42,4 +47,21 @@
   padding: 1%;
   margin: 1%;
   background-color: rgb(52 58 70);
+}
+
+.single-card-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 0 solid #e5e7eb;
+  border-radius: 1rem;
+  padding: 1%;
+  margin: 1%;
+  background-color: rgb(52 58 70);
+}
+
+.img-main {
+  max-width: 298px;
+  max-height: 348px;
+  height: auto;
 }

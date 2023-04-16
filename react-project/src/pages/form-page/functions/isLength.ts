@@ -1,9 +1,8 @@
-const isLength = (str: string, err: number, length: number) => {
+const isLength = (str: string, length: number) => {
   if (str.trim().length < length) {
-    err += 1;
-    return { error: err, message: `it should be not less then ${length} symbols` };
+    return false;
   }
-  return { error: err, message: '' };
+  return true;
 };
 
 export default isLength;

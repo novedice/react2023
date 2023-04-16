@@ -15,6 +15,19 @@ type CardType = {
   namePerson?: string;
 };
 
+interface ICardShort {
+  img: string;
+  title: string;
+  id: string;
+}
+
+interface ICardFull extends ICardShort {
+  owner?: Owner;
+  description: string;
+  location: string;
+  datePublished: string;
+}
+
 type MainProps = {
   searchValue: string;
 };
@@ -43,7 +56,7 @@ type FormErrors = {
 };
 
 type InputTextProps = {
-  register: UseFormRegister<FormValues>;
+  register: UseFormRegister<CardType>;
   label: string;
   validationFunc: (n: string) => boolean;
   errorMessage?: string;
@@ -51,22 +64,71 @@ type InputTextProps = {
 };
 
 type SelectFieldProps = {
-  register: UseFormRegister<FormValues>;
+  register: UseFormRegister<CardType>;
 };
 
-type FormValues = {
-  name: string;
-  img: string;
-  district: string;
-  area: string;
-  population: string;
-  description: string;
-  date?: Date;
-  fileImg?: HTMLInputElement;
-  beenThere?: boolean;
-  wantAName?: boolean;
-  namePerson?: string;
+interface IData {
+  photos: {
+    page: number;
+    pages: number;
+    perpage: number;
+    photo: IPhoto[];
+    total: number;
+  };
+}
+
+type Owner = {
+  nsid: string;
+  username: string;
+  realname: string;
 };
+
+interface PhotoFields {
+  farm: number;
+  id: string;
+  isfamily: 0 | 1;
+  isfriend: 0 | 1;
+  ispublic: 1 | 0;
+  secret: string;
+  server: string;
+}
+
+interface IPhoto extends PhotoFields {
+  owner: string;
+  title: string;
+}
+
+interface IPhotoInfo extends PhotoFields {
+  dateuploaded: string;
+  owner: Owner;
+  title: {
+    _content: string;
+  };
+  description: {
+    _content: string;
+  };
+  location: {
+    latitude: string;
+    longitude: string;
+    accuracy: string;
+    context: string;
+    locality: { _content: string };
+    county: { _content: string };
+    region: { _content: string };
+    country: { _content: string };
+    neighbourhood: { _content: string };
+  };
+  urls: {
+    url: [{ type: string; _content: string }];
+  };
+  dates: {
+    posted: string;
+    taken: string;
+    takengranularity: number;
+    takenunknown: string;
+    lastupdate: string;
+  };
+}
 
 export type {
   CardType,
@@ -76,5 +138,9 @@ export type {
   FormErrors,
   InputTextProps,
   SelectFieldProps,
-  FormValues,
+  IData,
+  IPhoto,
+  IPhotoInfo,
+  ICardFull,
+  ICardShort,
 };

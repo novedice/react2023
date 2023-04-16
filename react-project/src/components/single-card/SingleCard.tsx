@@ -1,19 +1,27 @@
 import React from 'react';
-import { CardType } from '../../types';
+import { IPhotoInfo } from '../../types';
 import './singleCard.css';
+import createUrl from '../../pages/main-page/createUrlFunc';
+import { Sizes } from '../../enums';
 
-export const SingleCard = (card: CardType) => {
+interface SingleCardProps {
+  card: IPhotoInfo;
+}
+
+export const SingleCard = ({ card }: SingleCardProps) => {
   return (
     <>
       <div className="single-card-wrap">
         <div className="card-image-wrap">
-          <img className="card-image" src={card.img}></img>
+          <img
+            className="card-image"
+            src={createUrl(card.server, card.id, card.secret, Sizes.MEDIUM)}
+          ></img>
         </div>
-        <div className="card-name capitalize">{`City: ${card.name}`}</div>
-        <div className="card-population">{`Population: ${card.population}`}</div>
-        <div className="card-area">{`Area: ${card.area} sq.km`}</div>
-        <div className="card-district capitalize">{`District: ${card.district}`}</div>
-        <div className="card-description">{card.description}</div>
+        <div className="card-name capitalize">{`Title: ${card.title._content}`}</div>
+        <div className="card-population">{`Author: ${card.owner?.username}`}</div>
+        <div className="card-area">{`Description: ${card.description._content}`}</div>
+        <div className="card-description">{`Date: ${card.dates.taken}`}</div>
       </div>
     </>
   );

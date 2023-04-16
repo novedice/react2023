@@ -1,9 +1,13 @@
 /* eslint-disable react/no-unknown-property */
 import React from 'react';
 
-class SearchLogo extends React.Component {
-  render() {
-    return (
+interface SearchLogoProps {
+  handleClick: (event: { preventDefault: () => void }) => void;
+}
+
+const SearchLogo = ({ handleClick }: SearchLogoProps) => {
+  return (
+    <div onClick={handleClick}>
       <svg
         width="1em"
         height="1em"
@@ -20,8 +24,8 @@ class SearchLogo extends React.Component {
           strokeLinejoin="round"
         ></path>
       </svg>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default SearchLogo;

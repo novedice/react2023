@@ -1,13 +1,8 @@
-/* eslint-disable react/no-unknown-property */
 import React from 'react';
 
-interface SearchLogoProps {
-  handleClick: (event: { preventDefault: () => void }) => void;
-}
-
-const SearchLogo = ({ handleClick }: SearchLogoProps) => {
+const SearchLogo = () => {
   return (
-    <div onClick={handleClick}>
+    <div>
       <svg
         width="1em"
         height="1em"

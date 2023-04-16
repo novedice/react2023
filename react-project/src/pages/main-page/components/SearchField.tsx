@@ -1,13 +1,13 @@
 import React from 'react';
+import { UseFormRegister } from 'react-hook-form';
 // import { fieldRequired } from '../../const';
 
 interface SearchProps {
-  register: UseFormRegister<string>;
-  label: string;
+  register: UseFormRegister<{ search: string }>;
   defaultValue: string;
 }
 
-const SearchField = ({ register, label, defaultValue }: SearchProps) => {
+const SearchField = ({ register, defaultValue }: SearchProps) => {
   return (
     <>
       <label className="form-label">
@@ -15,7 +15,7 @@ const SearchField = ({ register, label, defaultValue }: SearchProps) => {
           className="search-bar"
           type="text"
           defaultValue={defaultValue}
-          {...register(label)}
+          {...register('search')}
         ></input>
       </label>
     </>

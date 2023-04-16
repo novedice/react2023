@@ -63,9 +63,11 @@ const Main = () => {
       )}
       <div>
         <div className="search-bar-wrap">
-          <SearchLogo handleClick={handleSubmit(onSubmit)} />
           <form className="search-form" onSubmit={handleSubmit(onSubmit)}>
-            <SearchField register={register} label={'search'} defaultValue={searchValue} />
+            <button type="submit">
+              <SearchLogo />
+            </button>
+            <SearchField register={register} defaultValue={searchValue} />
           </form>
         </div>
         <div className="cards-wrap">

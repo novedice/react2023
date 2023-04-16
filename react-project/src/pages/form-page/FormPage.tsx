@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useAppDispatch, useTypeSelector } from '../../hooks/useAppDispatch';
-import { FormCard } from './components/cardInForm/FormCard.tsx';
+import { FormCard } from './components/cardInForm/FormCard';
 import Submitted from './components/Submitted';
 import { CardType } from '../../types';
 import isValidCity from './functions/isValidCity';
@@ -23,13 +23,18 @@ const FormPage = () => {
     reset,
     formState: { errors },
   } = useForm<CardType>();
-  const formValues = useTypeSelector((state) => state.formValues);
+  const formValues = useTypeSelector<CardType[]>((state) => state.formValues);
   const dispatch = useAppDispatch();
   const [submitted, setSubmitted] = useState(false);
 
   const onSubmit: SubmitHandler<CardType> = (data) => {
     dispatch({
-      payload: { ...data, fileImg: `${URL.createObjectURL(data.fileImg ? data.fileImg[0] : '')}` },
+      payload: {
+        ...data,
+        fileImg: data.fileImg
+          ? `${URL.createObjectURL((data.fileImg as unknown)[0] as Blob | MediaSource)}`
+          : '',
+      },
       type: ADD_FORM_VALUES,
     });
     console.log('form:', formValues);
@@ -69,7 +74,7 @@ const FormPage = () => {
             <InputText
               label={'description'}
               register={register}
-              validationFunc={() => {}}
+              validationFunc={() => true}
               minLength={5}
             />
             {errors.description && <div className="form-errors">{errors.description.message}</div>}

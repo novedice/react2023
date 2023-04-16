@@ -6,12 +6,12 @@ import { ModalWindowContext } from '../../context/ModalWindowContext';
 import ModalWindow from '../../components/modal-window/ModalWindow';
 import PhotoCard from '../../components/photo-card/photoCard';
 import SmallCard from '../../components/small-card/SmallCard';
-import InputText from '../form-page/components/fields/InputText.tsx';
 import { ICardShort } from 'types';
+import SearchField from './components/SearchField';
 import { Sizes } from '../../enums';
 import './main-page.css';
 import './assets/search-img.png';
-import SearchLogo from './searchLogo';
+import SearchLogo from './components/searchLogo';
 import { useAppDispatch, useTypeSelector } from '../../hooks/useAppDispatch';
 import { ADD_SEARCH_VAL } from '../../store/consts';
 
@@ -19,7 +19,7 @@ const Main = () => {
   const { window, openWindow, closeWindow } = useContext(ModalWindowContext);
   const searchValue = useTypeSelector((state) => state.searchValue);
   const dispatch = useAppDispatch();
-  const { register, handleSubmit, setValue } = useForm<string>();
+  const { register, handleSubmit } = useForm<{ search: string }>();
   const [respCards, setRespCards] = useState<ICardShort[]>([]);
   const [idCurrent, setIdCurrent] = useState('');
   const [searchParam, setSearchParam] = useState('');
@@ -32,7 +32,7 @@ const Main = () => {
 
   useEffect(() => {
     if (searchValue !== '') {
-      // dispatch({ payload: localStorage.getItem('search') as string, type: ADD_SEARCH_VAL });
+      console.log('searchVal in useEffect', searchValue);
       // setSearchValue(localStorage.getItem('search') as string);
       setSearchParam(searchValue);
     }
@@ -47,7 +47,7 @@ const Main = () => {
         })
       );
     }
-  }, [response, searchParam]);
+  }, [response, searchValue]);
 
   // useEffect(() => {
   //   localStorage.setItem('search', searchValue);
@@ -57,14 +57,11 @@ const Main = () => {
   //   event.preventDefault();
   //   setSearchValue(event.target.value);
   // };
-  const onSubmit: SubmitHandler<string> = (data) => {
-    dispatch({ payload: data, type: ADD_SEARCH_VAL });
+  const onSubmit: SubmitHandler<{ search: string }> = (data) => {
+    dispatch({ payload: data.search, type: ADD_SEARCH_VAL });
+    console.log('data:', data.search);
+    console.log('search in submit', searchValue);
   };
-  // const handleSubmit = (event: { preventDefault: () => void }) => {
-  //   event.preventDefault();
-  //   setSearchParam(searchValue);
-  //   localStorage.setItem('search', searchValue);
-  // };
 
   return (
     <>
@@ -78,7 +75,7 @@ const Main = () => {
           <SearchLogo handleClick={handleSubmit(onSubmit)} />
           <form className="search-form" onSubmit={handleSubmit(onSubmit)}>
             {/* <p className="form-name">Please enter below data of the city:</p> */}
-            <InputText register={register} label={'search'} validationFunc={() => {}} />
+            <SearchField register={register} label={'search'} defaultValue={searchValue} />
           </form>
           {/* <form className="search-form" onSubmit={submitHandle}>
             <input

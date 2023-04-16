@@ -1,5 +1,7 @@
 import { Navigate, Route, Routes, BrowserRouter } from 'react-router-dom';
 import React, { useState } from 'react';
+import { Provider } from 'react-redux';
+import store from './store/store';
 import Main from './pages/main-page/MainPage';
 import Layout from './components/layout/Layout';
 import AboutPage from './pages/about-page/AboutPage';
@@ -14,21 +16,23 @@ const App = () => {
 
   return (
     <>
-      <BrowserRouter>
-        <ModalWindowState>
-          <div className="app-wrap">
-            <Routes>
-              <Route path="/" element={<Layout state={active} setState={setActive} />}>
-                <Route path="/" element={<Main />} />
-                <Route path="/about" element={<AboutPage />} />
-                <Route path="/form" element={<FormPage />} />
-                <Route path="/404" element={<Page404 />} />
-                <Route path="*" element={<Navigate to="/404" />} />
-              </Route>
-            </Routes>
-          </div>
-        </ModalWindowState>
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <ModalWindowState>
+            <div className="app-wrap">
+              <Routes>
+                <Route path="/" element={<Layout state={active} setState={setActive} />}>
+                  <Route path="/" element={<Main />} />
+                  <Route path="/about" element={<AboutPage />} />
+                  <Route path="/form" element={<FormPage />} />
+                  <Route path="/404" element={<Page404 />} />
+                  <Route path="*" element={<Navigate to="/404" />} />
+                </Route>
+              </Routes>
+            </div>
+          </ModalWindowState>
+        </BrowserRouter>
+      </Provider>
     </>
   );
 };

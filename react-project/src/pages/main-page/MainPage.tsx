@@ -33,7 +33,6 @@ const Main = () => {
   useEffect(() => {
     if (searchValue !== '') {
       console.log('searchVal in useEffect', searchValue);
-      // setSearchValue(localStorage.getItem('search') as string);
       setSearchParam(searchValue);
     }
     if (response) {
@@ -49,14 +48,6 @@ const Main = () => {
     }
   }, [response, searchValue]);
 
-  // useEffect(() => {
-  //   localStorage.setItem('search', searchValue);
-  // }, [searchValue]);
-
-  // const searchHandle = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   event.preventDefault();
-  //   setSearchValue(event.target.value);
-  // };
   const onSubmit: SubmitHandler<{ search: string }> = (data) => {
     dispatch({ payload: data.search, type: ADD_SEARCH_VAL });
     console.log('data:', data.search);
@@ -74,17 +65,8 @@ const Main = () => {
         <div className="search-bar-wrap">
           <SearchLogo handleClick={handleSubmit(onSubmit)} />
           <form className="search-form" onSubmit={handleSubmit(onSubmit)}>
-            {/* <p className="form-name">Please enter below data of the city:</p> */}
             <SearchField register={register} label={'search'} defaultValue={searchValue} />
           </form>
-          {/* <form className="search-form" onSubmit={submitHandle}>
-            <input
-              className="search-bar"
-              type="text"
-              onChange={searchHandle}
-              defaultValue={searchValue}
-            ></input>
-          </form> */}
         </div>
         <div className="cards-wrap">
           {loading && <p>LOADING...</p>}

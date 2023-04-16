@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { SingleCard } from '../../components/single-card/SingleCard';
+import { useAppDispatch, useTypeSelector } from '../../hooks/useAppDispatch';
+import { FormCard } from './components/cardInForm/FormCard.tsx';
 import Submitted from './components/Submitted';
 import { CardType } from '../../types';
 import isValidCity from './functions/isValidCity';
@@ -12,6 +13,7 @@ import InputDate from './components/fields/InputDate';
 import FileInput from './components/fields/FileInput';
 import InputName from './components/fields/InputName';
 import isValidNumber from './functions/isValidNumber';
+import { ADD_FORM_VALUES } from '../../store/consts';
 import './formPage.css';
 
 const FormPage = () => {
@@ -21,14 +23,16 @@ const FormPage = () => {
     setValue,
     formState: { errors },
   } = useForm<CardType>();
-  const [cards, setCards] = useState<CardType[]>([]);
+  const formValues = useTypeSelector((state) => state.formValues);
+  const dispatch = useAppDispatch();
   const [submitted, setSubmitted] = useState(false);
 
   const onSubmit: SubmitHandler<CardType> = (data) => {
-    setCards([
-      ...cards,
-      { ...data, fileImg: `${URL.createObjectURL(data.fileImg ? data.fileImg[0] : '')}` },
-    ]);
+    dispatch({
+      payload: { ...data, fileImg: `${URL.createObjectURL(data.fileImg ? data.fileImg[0] : '')}` },
+      type: ADD_FORM_VALUES,
+    });
+    console.log('form:', formValues);
     setSubmitted(true);
     setValue('name', '');
     setValue('area', '');
@@ -92,15 +96,15 @@ const FormPage = () => {
         </div>
         <div className="your-cards-wrap">
           <h2 className="">Your own cards:</h2>
-          {cards.length !== 0 && (
+          {formValues.length !== 0 && (
             <div className="cards-in-form">
-              {cards.map((oneCard, index) => (
+              {formValues.map((oneCard, index) => (
                 <React.Fragment key={index}>
                   <div className="card-in-form">
                     {oneCard.wantAName && <p>{`Card by ${oneCard.namePerson}`}</p>}
                     {oneCard.beenThere === 'yes' && <p>Already visited!</p>}
                     {oneCard.beenThere === 'no' && <p>Not yet visited</p>}
-                    <SingleCard
+                    <FormCard
                       name={oneCard.name}
                       img={oneCard.fileImg}
                       district={oneCard.district}
@@ -115,7 +119,7 @@ const FormPage = () => {
               ))}
             </div>
           )}
-          {cards.length === 0 && (
+          {formValues.length === 0 && (
             <h3>
               You did not add your cards yet. If you want to add your card on this page, fill the
               form and press submit button.

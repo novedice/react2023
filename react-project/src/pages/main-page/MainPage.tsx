@@ -70,7 +70,6 @@ const Main = () => {
         </div>
         <div className="cards-wrap">
           {loading && <p>LOADING...</p>}
-
           {!loading && respCards.length !== 0 && (
             <>
               {respCards.map((oneUrl, index) => (

@@ -20,7 +20,7 @@ const FormPage = () => {
   const {
     register,
     handleSubmit,
-    setValue,
+    reset,
     formState: { errors },
   } = useForm<CardType>();
   const formValues = useTypeSelector((state) => state.formValues);
@@ -34,16 +34,7 @@ const FormPage = () => {
     });
     console.log('form:', formValues);
     setSubmitted(true);
-    setValue('name', '');
-    setValue('area', '');
-    setValue('population', '');
-    setValue('description', '');
-    setValue('district', 'lisbon');
-    setValue('date', '');
-    setValue('fileImg', '');
-    setValue('beenThere', '');
-    setValue('wantAName', false);
-    setValue('namePerson', '');
+    reset();
   };
 
   return (
@@ -102,8 +93,7 @@ const FormPage = () => {
                 <React.Fragment key={index}>
                   <div className="card-in-form">
                     {oneCard.wantAName && <p>{`Card by ${oneCard.namePerson}`}</p>}
-                    {oneCard.beenThere === 'yes' && <p>Already visited!</p>}
-                    {oneCard.beenThere === 'no' && <p>Not yet visited</p>}
+                    <p>{oneCard.beenThere === 'yes' ? 'Already visited!' : 'Not yet visited'}</p>
                     <FormCard
                       name={oneCard.name}
                       img={oneCard.fileImg}

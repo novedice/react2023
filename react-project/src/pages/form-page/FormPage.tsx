@@ -37,7 +37,6 @@ const FormPage = () => {
       },
       type: ADD_FORM_VALUES,
     });
-    console.log('form:', formValues);
     setSubmitted(true);
     reset();
   };

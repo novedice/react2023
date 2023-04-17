@@ -1,12 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { usePhotos } from '../../hooks/usePhotos';
+import React, { useContext, useState, useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import createUrl from './createUrlFunc';
 import { ModalWindowContext } from '../../context/ModalWindowContext';
 import ModalWindow from '../../components/modal-window/ModalWindow';
 import PhotoCard from '../../components/photo-card/photoCard';
 import SmallCard from '../../components/small-card/SmallCard';
-import { ICardShort } from 'types';
+import { IPhoto } from 'types';
 import SearchField from './components/SearchField';
 import { Sizes } from '../../enums';
 import './main-page.css';
@@ -14,16 +13,16 @@ import './assets/search-img.png';
 import SearchLogo from './components/searchLogo';
 import { useAppDispatch, useTypeSelector } from '../../hooks/useAppDispatch';
 import { ADD_SEARCH_VAL } from '../../store/consts';
+import { useGetPhotosQuery } from '../../api-requests/apiSlice';
 
 const Main = () => {
   const { window, openWindow, closeWindow } = useContext(ModalWindowContext);
   const searchValue = useTypeSelector((state) => state.searchValue);
+  const [searchParam, setSearchParam] = useState('');
+  const { data = [], isLoading, isError } = useGetPhotosQuery(searchValue);
   const dispatch = useAppDispatch();
   const { register, handleSubmit } = useForm<{ search: string }>();
-  const [respCards, setRespCards] = useState<ICardShort[]>([]);
   const [idCurrent, setIdCurrent] = useState('');
-  const [searchParam, setSearchParam] = useState('');
-  const { response, loading, error } = usePhotos(searchParam);
 
   const photoHandle = async (id: string) => {
     openWindow();
@@ -34,18 +33,7 @@ const Main = () => {
     if (searchValue !== '') {
       setSearchParam(searchValue);
     }
-    if (response) {
-      setRespCards(
-        response?.photos.photo.map((onePhoto) => {
-          return {
-            img: createUrl(onePhoto.server, onePhoto.id, onePhoto.secret, Sizes.SMALL),
-            title: onePhoto.title,
-            id: onePhoto.id,
-          };
-        })
-      );
-    }
-  }, [response, searchValue]);
+  }, [searchValue]);
 
   const onSubmit: SubmitHandler<{ search: string }> = (data) => {
     dispatch({ payload: data.search, type: ADD_SEARCH_VAL });
@@ -68,18 +56,26 @@ const Main = () => {
           </form>
         </div>
         <div className="cards-wrap">
-          {loading && <p>LOADING...</p>}
-          {!loading && respCards.length !== 0 && (
+          {isLoading && <p>LOADING...</p>}
+          {!isLoading && data?.photos?.photo?.length !== 0 && (
             <>
-              {respCards.map((oneUrl, index) => (
-                <SmallCard key={index} oneUrl={oneUrl} photoHandle={photoHandle} />
+              {data?.photos?.photo?.map((onePhoto: IPhoto, index: number) => (
+                <SmallCard
+                  key={index}
+                  oneUrl={{
+                    img: createUrl(onePhoto.server, onePhoto.id, onePhoto.secret, Sizes.SMALL),
+                    title: onePhoto.title,
+                    id: onePhoto.id,
+                  }}
+                  photoHandle={photoHandle}
+                />
               ))}
             </>
           )}
-          {!loading && respCards.length === 0 && (
+          {!isLoading && data?.photos?.photo?.length === 0 && (
             <div>{`Nothing found with ${searchParam}...`}</div>
           )}
-          {error && <p>{error}</p>}
+          {isError && <p>something went wrong...</p>}
         </div>
       </div>
     </>

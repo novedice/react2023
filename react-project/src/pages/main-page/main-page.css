@@ -27,6 +27,14 @@
 
 .search-form {
   width: 100%;
+  display: flex;
+}
+
+.search-logo {
+  appearance: none;
+  background-color: transparent;
+  color: white;
+  border: none;
 }
 
 .cards-wrap {

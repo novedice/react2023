@@ -32,7 +32,6 @@ const Main = () => {
 
   useEffect(() => {
     if (searchValue !== '') {
-      console.log('searchVal in useEffect', searchValue);
       setSearchParam(searchValue);
     }
     if (response) {
@@ -50,8 +49,6 @@ const Main = () => {
 
   const onSubmit: SubmitHandler<{ search: string }> = (data) => {
     dispatch({ payload: data.search, type: ADD_SEARCH_VAL });
-    console.log('data:', data.search);
-    console.log('search in submit', searchValue);
   };
 
   return (
@@ -64,7 +61,7 @@ const Main = () => {
       <div>
         <div className="search-bar-wrap">
           <form className="search-form" onSubmit={handleSubmit(onSubmit)}>
-            <button type="submit">
+            <button type="submit" className="search-logo">
               <SearchLogo />
             </button>
             <SearchField register={register} defaultValue={searchValue} />

@@ -9,7 +9,7 @@ type CardType = {
   population: string;
   description: string;
   date?: Date;
-  fileImg?: HTMLInputElement;
+  fileImg?: FileList;
   beenThere?: string;
   wantAName?: boolean;
   namePerson?: string;

@@ -32,7 +32,7 @@ const FormPage = () => {
       payload: {
         ...data,
         fileImg: data.fileImg
-          ? `${URL.createObjectURL((data.fileImg as unknown)[0] as Blob | MediaSource)}`
+          ? `${URL.createObjectURL(data.fileImg[0] as Blob | MediaSource)}`
           : '',
       },
       type: ADD_FORM_VALUES,

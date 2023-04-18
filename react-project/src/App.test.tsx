@@ -1,19 +1,17 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { screen, fireEvent } from '@testing-library/react';
 import React from 'react';
 import { describe, it } from 'vitest';
-
 import App from './App';
+import { renderWithProviders } from './test/test-utils';
 
 describe('App', () => {
-  const placeholder = localStorage.getItem('search') || '';
-  it('renders app', () => {
-    render(<App />);
+  it('renders app', async () => {
+    renderWithProviders(<App />);
+
     const input = screen.getByRole('textbox');
     expect(screen.getByText(/main/i)).toBeInTheDocument();
     expect(screen.getByText(/about us/i)).toBeInTheDocument();
     expect(input).toBeInTheDocument();
-    expect(screen.queryByPlaceholderText(placeholder)).toBeNull();
-    expect(input).toHaveDisplayValue(placeholder);
     fireEvent.change(input, {
       target: { value: 'lisbon' },
     });

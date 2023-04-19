@@ -9,12 +9,6 @@ const formReducer = (state = [], action: PayloadAction<CardType[]>) => {
         return [action.payload];
       } else {
         return [...state, action.payload];
-        // {
-        //   ...action.payload,
-        //   fileImg: `${URL.createObjectURL(
-        //     action.payload.fileImg ? action.payload.fileImg[0] : ''
-        //   )}`,
-        // },
       }
     }
     case CLEAR_FORM_RESULTS: {

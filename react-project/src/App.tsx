@@ -1,7 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import React, { useState } from 'react';
-// import { Provider } from 'react-redux';
-// import store from './store/store';
 import Main from './pages/main-page/MainPage';
 import Layout from './components/layout/Layout';
 import AboutPage from './pages/about-page/AboutPage';
@@ -11,6 +9,8 @@ import { ActiveState } from './types';
 import './App.css';
 import setupStore from './store/store';
 import { Provider } from 'react-redux';
+import './index.css';
+
 // import { ModalWindowState } from './context/ModalWindowContext';
 
 const App = () => {

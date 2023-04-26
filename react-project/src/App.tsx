@@ -9,7 +9,9 @@ import Page404 from './pages/page404/Page404';
 import FormPage from './pages/form-page/FormPage';
 import { ActiveState } from './types';
 import './App.css';
-import { ModalWindowState } from './context/ModalWindowContext';
+import setupStore from './store/store';
+import { Provider } from 'react-redux';
+// import { ModalWindowState } from './context/ModalWindowContext';
 
 const App = () => {
   const [active, setActive] = useState<ActiveState>({ main: 'active', about: '', form: '' });
@@ -17,7 +19,8 @@ const App = () => {
   return (
     <>
       {/* <BrowserRouter> */}
-      <ModalWindowState>
+      {/* <ModalWindowState> */}
+      <Provider store={setupStore({})}>
         <div className="app-wrap">
           <Routes>
             <Route path="/" element={<Layout state={active} setState={setActive} />}>
@@ -29,8 +32,9 @@ const App = () => {
             </Route>
           </Routes>
         </div>
-      </ModalWindowState>
-      {/* </BrowserRouter> */}
+        {/* </ModalWindowState> */}
+        {/* </BrowserRouter> */}
+      </Provider>
     </>
   );
 };

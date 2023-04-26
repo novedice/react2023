@@ -18,9 +18,9 @@ async function createServer() {
   // express router (express.Router()), you should use router.use
   app.use(vite.middlewares);
 
-  app.use('*', async (req, res) => {
-    // serve index.html - we will tackle this next
-  });
+  // app.use('*', async (req, res) => {
+  //   // serve index.html - we will tackle this next
+  // });
 
   app.listen(5173);
   app.use('*', async (req, res, next) => {

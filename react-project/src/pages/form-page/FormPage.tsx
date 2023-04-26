@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { useAppDispatch, useTypeSelector } from '../../hooks/useAppDispatch';
+// import { useAppDispatch, useTypeSelector } from '../../hooks/useAppDispatch';
 import { FormCard } from './components/cardInForm/FormCard';
 import Submitted from './components/Submitted';
 import { CardType } from '../../types';
@@ -13,7 +13,7 @@ import InputDate from './components/fields/InputDate';
 import FileInput from './components/fields/FileInput';
 import InputName from './components/fields/InputName';
 import isValidNumber from './functions/isValidNumber';
-import { ADD_FORM_VALUES } from '../../store/consts';
+// import { ADD_FORM_VALUES } from '../../store/consts';
 import './formPage.css';
 
 const FormPage = () => {
@@ -23,20 +23,20 @@ const FormPage = () => {
     reset,
     formState: { errors },
   } = useForm<CardType>();
-  const formValues = useTypeSelector<CardType[]>((state) => state.formValues);
-  const dispatch = useAppDispatch();
+  // const formValues = useTypeSelector<CardType[]>((state) => state.formValues);
+  // const dispatch = useAppDispatch();
   const [submitted, setSubmitted] = useState(false);
 
   const onSubmit: SubmitHandler<CardType> = (data) => {
-    dispatch({
-      payload: {
-        ...data,
-        fileImg: data.fileImg
-          ? `${URL.createObjectURL(data.fileImg[0] as Blob | MediaSource)}`
-          : '',
-      },
-      type: ADD_FORM_VALUES,
-    });
+    // dispatch({
+    //   payload: {
+    //     ...data,
+    //     fileImg: data.fileImg
+    //       ? `${URL.createObjectURL(data.fileImg[0] as Blob | MediaSource)}`
+    //       : '',
+    //   },
+    //   type: ADD_FORM_VALUES,
+    // });
     setSubmitted(true);
     reset();
   };
@@ -91,7 +91,7 @@ const FormPage = () => {
         </div>
         <div className="your-cards-wrap">
           <h2 className="">Your own cards:</h2>
-          {formValues.length !== 0 && (
+          {/* {formValues.length !== 0 && (
             <div className="cards-in-form">
               {formValues.map((oneCard, index) => (
                 <React.Fragment key={index}>
@@ -118,7 +118,7 @@ const FormPage = () => {
               You did not add your cards yet. If you want to add your card on this page, fill the
               form and press submit button.
             </h3>
-          )}
+          )} */}
         </div>
       </div>
     </>

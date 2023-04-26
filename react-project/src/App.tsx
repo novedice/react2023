@@ -1,5 +1,7 @@
 import { Navigate, Route, Routes, BrowserRouter } from 'react-router-dom';
 import React, { useState } from 'react';
+// import { Provider } from 'react-redux';
+// import store from './store/store';
 import Main from './pages/main-page/MainPage';
 import Layout from './components/layout/Layout';
 import AboutPage from './pages/about-page/AboutPage';

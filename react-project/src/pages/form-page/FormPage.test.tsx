@@ -1,12 +1,15 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import React from 'react';
 import { describe, it } from 'vitest';
 import FormPage from './FormPage';
+import { renderWithProviders } from '../../test/test-utils';
 
 describe('FormPage', () => {
-  it('Renders FormPage', () => {
-    render(<FormPage />);
-    expect(screen.getByText(/area/i)).toBeInTheDocument();
+  beforeEach(() => {
+    renderWithProviders(<FormPage />);
+  });
+  it('Renders FormPage', async () => {
+    expect(await screen.getByText(/area/i)).toBeInTheDocument();
     expect(screen.getByText(/district/i)).toBeInTheDocument();
   });
 });

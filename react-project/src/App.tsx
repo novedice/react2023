@@ -11,15 +11,12 @@ import setupStore from './store/store';
 import { Provider } from 'react-redux';
 import './index.css';
 
-// import { ModalWindowState } from './context/ModalWindowContext';
-
 const App = () => {
   const [active, setActive] = useState<ActiveState>({ main: 'active', about: '', form: '' });
 
   return (
     <>
       {/* <BrowserRouter> */}
-      {/* <ModalWindowState> */}
       <Provider store={setupStore({})}>
         <div className="app-wrap">
           <Routes>
@@ -32,7 +29,6 @@ const App = () => {
             </Route>
           </Routes>
         </div>
-        {/* </ModalWindowState> */}
         {/* </BrowserRouter> */}
       </Provider>
     </>

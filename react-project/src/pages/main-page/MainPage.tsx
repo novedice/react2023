@@ -17,7 +17,7 @@ import { useGetPhotosQuery } from '../../api-requests/apiSlice';
 const Main = () => {
   const searchValue = useTypeSelector((state) => state.searchValue);
   const { modalWindow } = useTypeSelector((state) => state.modalWindow);
-  const [searchParam, setSearchParam] = useState('');
+  const [searchParam, setSearchParam] = useState(searchValue);
   const { data = [], isLoading, isError } = useGetPhotosQuery(searchValue);
 
   const dispatch = useAppDispatch();
@@ -26,7 +26,6 @@ const Main = () => {
 
   const photoHandle = async (id: string) => {
     dispatch({ type: OPEN_MODAL_WINDOW });
-    console.log('in main', modalWindow);
     setIdCurrent(id);
   };
 
@@ -38,7 +37,6 @@ const Main = () => {
 
   const onSubmit: SubmitHandler<{ search: string }> = (data) => {
     dispatch({ payload: data.search, type: ADD_SEARCH_VAL });
-    console.log(data);
   };
 
   return (
@@ -54,7 +52,7 @@ const Main = () => {
             <button type="submit" className="search-logo">
               <SearchLogo />
             </button>
-            <SearchField register={register} defaultValue={''} />
+            <SearchField register={register} defaultValue={searchParam} />
           </form>
         </div>
         <div className="cards-wrap">

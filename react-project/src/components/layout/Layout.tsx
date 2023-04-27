@@ -1,31 +1,34 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
-import { LayoutProps } from '../../types';
 import './layout.css';
+import { useAppDispatch, useTypeSelector } from '../../hooks/useAppDispatch';
+import { ACTIVE_ABOUT, ACTIVE_FORM, ACTIVE_MAIN } from '../../store/consts';
 
-const Layout = ({ state, setState }: LayoutProps) => {
+const Layout = () => {
+  const { main, about, form } = useTypeSelector((state) => state.activePage);
+  const dispatch = useAppDispatch();
   const activeMainHandle = () => {
-    setState({ main: 'active', about: '', form: '' });
+    dispatch({ type: ACTIVE_MAIN });
   };
 
   const activeAboutHandle = () => {
-    setState({ main: '', about: 'active', form: '' });
+    dispatch({ type: ACTIVE_ABOUT });
   };
 
   const activeFormHandle = () => {
-    setState({ main: '', about: '', form: 'active' });
+    dispatch({ type: ACTIVE_FORM });
   };
 
   return (
     <>
       <header className="header-wrap">
-        <Link to="/" className={`unlink ${state.main}`} onClick={activeMainHandle}>
+        <Link to="/" className={`unlink ${main}`} onClick={activeMainHandle}>
           main
         </Link>
-        <Link to="/about" className={`unlink ${state.about}`} onClick={activeAboutHandle}>
+        <Link to="/about" className={`unlink ${about}`} onClick={activeAboutHandle}>
           about us
         </Link>
-        <Link to="/form" className={`unlink ${state.form}`} onClick={activeFormHandle}>
+        <Link to="/form" className={`unlink ${form}`} onClick={activeFormHandle}>
           form
         </Link>
       </header>

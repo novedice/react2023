@@ -9,7 +9,9 @@
     "preview": "vite preview",
     "lint": "eslint --ext js,ts,tsx src",
     "lint:fix": "npm run lint -- --fix",
-    "test": "vitest"
+    "test": "vitest",
+    "cypress:open": "cypress open",
+    "start:test": "node server && cypress open"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
@@ -23,9 +25,11 @@
     "redux-mock-store": "^1.5.4"
   },
   "devDependencies": {
+    "@cypress/code-coverage": "^3.10.4",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
+    "@types/mocha": "^10.0.1",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "@types/redux-mock-store": "^1.0.3",
@@ -33,9 +37,13 @@
     "@typescript-eslint/parser": "^5.54.1",
     "@vitejs/plugin-react": "^3.1.0",
     "@vitest/coverage-c8": "^0.29.3",
+    "babel-plugin-istanbul": "^6.1.1",
+    "cypress": "^12.11.0",
+    "cypress-vite": "^1.4.0",
     "eslint": "^8.35.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-import-resolver-typescript": "^2.7.1",
+    "eslint-plugin-cypress": "^2.13.3",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.29.4",

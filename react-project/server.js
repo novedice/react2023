@@ -34,7 +34,9 @@ const createServer = async () => {
 
   app.use(vite.middlewares);
 
-  app.listen(5173);
+  app.listen(5173, () => {
+    console.log('Server started at http://localhost:5173');
+  });
   app.use('*', async (req, res, next) => {
     const url = req.originalUrl;
     // const { pipe } = renderToPipeableStream(<App />, {

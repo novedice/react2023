@@ -1,25 +1,18 @@
-import ReactDOMServer from 'react-dom/server';
+import ReactDOMServer, { RenderToPipeableStreamOptions } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom/server';
 
-import App from './App';
 import React from 'react';
 import { Provider } from 'react-redux';
-import setupStore from './store/store';
+import { store } from './store/store';
+import App from './App';
+('@types/express');
 
-interface IRenderProps {
-  path: string;
-}
-
-export const render = ({ path }: IRenderProps) => {
-  return ReactDOMServer.renderToString(
-    // renderToPipableStream(
-    <StaticRouter location={path}>
-      <Provider store={setupStore({})}>
+export const render = (path: string, options: RenderToPipeableStreamOptions) =>
+  ReactDOMServer.renderToPipeableStream(
+    <Provider store={store}>
+      <StaticRouter basename="/" location={path}>
         <App />
-      </Provider>
-    </StaticRouter>
-    // {
-    //   bootstrapScripts: ['/entry-client.tsx'],
-    // }
+      </StaticRouter>
+    </Provider>,
+    options
   );
-};

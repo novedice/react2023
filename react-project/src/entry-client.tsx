@@ -4,13 +4,13 @@ import { Provider } from 'react-redux';
 
 import React from 'react';
 import App from './App';
-import setupStore from './store/store';
+import { store } from './store/store';
 
 ReactDOM.hydrateRoot(
   document.getElementById('app') as HTMLElement,
-  <BrowserRouter>
-    <Provider store={setupStore({})}>
+  <Provider store={store}>
+    <BrowserRouter basename="/">
       <App />
-    </Provider>
-  </BrowserRouter>
+    </BrowserRouter>
+  </Provider>
 );

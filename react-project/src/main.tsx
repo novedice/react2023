@@ -1,14 +1,18 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
 import App from './App';
 import './index.css';
-import { Provider } from 'react-redux';
-import setupStore from './store/store';
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>
-    <Provider store={setupStore({})}>
-      <App />
-    </Provider>
-  </React.StrictMode>
+export default () => (
+  <html lang="en">
+    <head>
+      <meta charSet="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>react</title>
+    </head>
+    <body>
+      <div id="app">
+        <App />
+      </div>
+    </body>
+  </html>
 );

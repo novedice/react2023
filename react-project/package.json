@@ -4,14 +4,18 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "ts-node server",
+    "start": "ts-node server",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint --ext js,ts,tsx src",
     "lint:fix": "npm run lint -- --fix",
     "test": "vitest",
     "cypress:open": "cypress open",
-    "start:test": "ts-node server && cypress open"
+    "cy:open-e2e": "cypress open --e2e --browser chrome",
+    "cy:run-e2e": "cypress run --e2e",
+    "cy:run-unit": "cypress run --component",
+    "cy:e2e": "start-server-and-test start http-get://localhost:5173 cy:open-e2e",
+    "test:cy": "npx start-server-and-test start http-get://localhost:5173 cy:run-e2e && npx nyc report && npx nyc report --reporter=text-summary"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",

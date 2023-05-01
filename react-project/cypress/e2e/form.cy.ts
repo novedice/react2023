@@ -1,11 +1,3 @@
-describe('About page', () => {
-  it('Visit About us page', () => {
-    cy.visit('http://localhost:5173');
-    cy.contains('about us').click();
-    cy.url().should('include', '/about');
-  });
-});
-
 describe('Form page', () => {
   it('checks the form validation working', () => {
     cy.visit('http://localhost:5173/form');
@@ -20,7 +12,7 @@ describe('Form page', () => {
     cy.get('form').contains('submit').click();
     cy.get('.form-errors').contains('It should be a number');
   });
-  it('checks the form', () => {
+  it('checks the form submitting', () => {
     cy.visit('http://localhost:5173/form');
     cy.url().should('include', '/form');
     cy.get('.name-city').type('New');

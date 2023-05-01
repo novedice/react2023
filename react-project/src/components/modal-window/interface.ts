@@ -1,6 +1,6 @@
 interface ModalWindowProps {
   children: React.ReactNode;
-  closeWindow: () => void;
+  closeWindow?: () => void;
 }
 
 export type { ModalWindowProps };

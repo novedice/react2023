@@ -12,4 +12,5 @@ const setupStore = (preloadedState?: PreloadedState<RootState>) => {
   });
 };
 
+export const store = setupStore({});
 export default setupStore;

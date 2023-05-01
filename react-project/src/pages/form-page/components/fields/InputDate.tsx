@@ -8,7 +8,7 @@ const InputDate = ({ register }: SelectFieldProps) => {
       <label className="form-label">
         date of foundation
         <input
-          className="form-input-text"
+          className="form-input-text input-date"
           type="date"
           {...register('date', { required: fieldRequired })}
         ></input>

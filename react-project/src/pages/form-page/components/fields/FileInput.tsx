@@ -8,7 +8,7 @@ const FileInput = ({ register }: SelectFieldProps) => {
       <label className="form-label">
         Add photo of the city
         <input
-          className="form-input-text"
+          className="form-input-text input-file"
           type="file"
           {...register('fileImg', { required: fieldRequired })}
         ></input>

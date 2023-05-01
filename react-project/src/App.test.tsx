@@ -3,10 +3,15 @@ import React from 'react';
 import { describe, it } from 'vitest';
 import App from './App';
 import { renderWithProviders } from './test/test-utils';
+import { BrowserRouter } from 'react-router-dom';
 
 describe('App', () => {
   it('renders app', async () => {
-    renderWithProviders(<App />);
+    renderWithProviders(
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    );
 
     const input = screen.getByRole('textbox');
     expect(screen.getByText(/main/i)).toBeInTheDocument();

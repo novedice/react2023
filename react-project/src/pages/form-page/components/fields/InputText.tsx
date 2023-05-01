@@ -14,7 +14,7 @@ const InputText = ({
       <label className="form-label">
         {`${label} of the city`}
         <input
-          className="form-input-text"
+          className={`form-input-text ${label}-city`}
           type="text"
           {...register(label, {
             required: fieldRequired,

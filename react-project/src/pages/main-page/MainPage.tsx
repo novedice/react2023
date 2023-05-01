@@ -1,7 +1,6 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import createUrl from './createUrlFunc';
-import { ModalWindowContext } from '../../context/ModalWindowContext';
 import ModalWindow from '../../components/modal-window/ModalWindow';
 import PhotoCard from '../../components/photo-card/photoCard';
 import SmallCard from '../../components/small-card/SmallCard';
@@ -12,20 +11,21 @@ import './main-page.css';
 import './assets/search-img.png';
 import SearchLogo from './components/searchLogo';
 import { useAppDispatch, useTypeSelector } from '../../hooks/useAppDispatch';
-import { ADD_SEARCH_VAL } from '../../store/consts';
+import { ADD_SEARCH_VAL, OPEN_MODAL_WINDOW } from '../../store/consts';
 import { useGetPhotosQuery } from '../../api-requests/apiSlice';
 
 const Main = () => {
-  const { window, openWindow, closeWindow } = useContext(ModalWindowContext);
   const searchValue = useTypeSelector((state) => state.searchValue);
-  const [searchParam, setSearchParam] = useState('');
+  const { modalWindow } = useTypeSelector((state) => state.modalWindow);
+  const [searchParam, setSearchParam] = useState(searchValue);
   const { data = [], isLoading, isError } = useGetPhotosQuery(searchValue);
+
   const dispatch = useAppDispatch();
   const { register, handleSubmit } = useForm<{ search: string }>();
   const [idCurrent, setIdCurrent] = useState('');
 
   const photoHandle = async (id: string) => {
-    openWindow();
+    dispatch({ type: OPEN_MODAL_WINDOW });
     setIdCurrent(id);
   };
 
@@ -41,8 +41,8 @@ const Main = () => {
 
   return (
     <>
-      {window && (
-        <ModalWindow closeWindow={closeWindow}>
+      {modalWindow && (
+        <ModalWindow>
           <PhotoCard id={idCurrent} />
         </ModalWindow>
       )}
@@ -52,7 +52,7 @@ const Main = () => {
             <button type="submit" className="search-logo">
               <SearchLogo />
             </button>
-            <SearchField register={register} defaultValue={searchValue} />
+            <SearchField register={register} defaultValue={searchParam} />
           </form>
         </div>
         <div className="cards-wrap">
